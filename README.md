@@ -23,7 +23,8 @@ $ npm install --save minimajs
 ## Usage
 
 The Minima is a plugin framework container. We need to create a plugin framework instance and start it.
-<img src="https://github.com/lorry2018/minimajs/blob/master/docs/imgs/index.png" width="200">
+
+<a href="https://github.com/lorry2018/minimajs/blob/master/docs/imgs/index.png"><img src="https://github.com/lorry2018/minimajs/blob/master/docs/imgs/index.png" align="left" width="50%" ></a>
 
 ```js
 import { Minima } from 'minimajs';
