@@ -10,7 +10,7 @@ There are three features:
 (3) Extension: the extension supporting for plugin.
 
 The architecture of minimajs is shown as below.
-https://github.com/lorry2018/minimajs/blob/master/docs/imgs/arch.png
+ ![image](https://github.com/lorry2018/minimajs/blob/master/docs/imgs/arch.png)
 
 ## Install
 
