@@ -6,7 +6,7 @@ Minima is a simple yet powerfully plugin framework, based on NodeJS, developed b
  
 There are three features:
 (1) Dynamic plugin: define the plugin structure, plugin config, plugin dependencies, plugin lifecycle, plugin class loading;
-(2) Service: the communication between plugins which SOA;
+(2) Service: the communication between plugins with SOA;
 (3) Extension: the extension supporting for plugin.
 
 ## Install
