@@ -1,0 +1,32 @@
+{
+    "id": "demoPlugin",
+    "name": "My First Demo Plugin", // By default, same as id
+    "description": "The details information...", // By default, same as id
+    "version": "1.0", // By default, 1.0.0.0
+    "initializedState": "installed/active", // By default, active
+    "startLevel": 50, // By default, 50
+    "activator": "MyPluginActivator.js", // By default, Activator.js or none
+
+    "dependentPackages": { // 相当于主程序package.json 的 dependencies ,即插件依赖的第三方包，当前版本还需要在主目录的package.json添加，下一个版本可以实现自动处理
+        "log4js": "^1.1.1"
+    },
+
+    "dependencies": [{
+        "id": "demoPlugin",
+        "version": "1.0.0"
+    }], // By default, []
+
+    "services": [{ // By default, []
+        "name": "DemoServiceContract",
+        "service": "./src/DemoService.js",
+        "properties": {}
+    }],
+
+    "extensions": [{ // By default, []
+        "id": "extensionPointId",
+        "data": {}
+    }, {
+        "id": "extensionPointId2",
+        "data": {}
+    }]
+}

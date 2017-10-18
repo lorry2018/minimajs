@@ -1,0 +1,8 @@
+{
+    "files.exclude": {
+        "node_modules/": true,
+        "build/": true,
+        "*.log": true,
+        "docs": true
+    }
+}
