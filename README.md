@@ -10,7 +10,8 @@ There are three features:
 (3) Extension: the extension supporting for plugin.
 
 The architecture of minimajs is shown as below.
- ![image](https://github.com/lorry2018/minimajs/blob/master/docs/imgs/arch.png)
+
+<img src="https://github.com/lorry2018/minimajs/blob/master/docs/imgs/arch.png" align="left" width="50%" >
 
 ## Install
 
@@ -24,7 +25,7 @@ $ npm install --save minimajs
 
 The Minima is a plugin framework container. We need to create a plugin framework instance and start it.
 
-<a href="https://github.com/lorry2018/minimajs/blob/master/docs/imgs/index.png"><img src="https://github.com/lorry2018/minimajs/blob/master/docs/imgs/index.png" align="left" width="50%" ></a>
+![image](https://github.com/lorry2018/minimajs/blob/master/docs/imgs/index.png)
 
 ```js
 import { Minima } from 'minimajs';
