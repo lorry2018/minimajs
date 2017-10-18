@@ -24,7 +24,7 @@ The Minima is a plugin framework container. We need to create a plugin framework
 ```js
 import { Minima } from 'minimajs';
 
-let minima = new Minima(__dirname + '/plugins', null);
+let minima = new Minima(__dirname + '/plugins');
 minima.start();
 ```
 
