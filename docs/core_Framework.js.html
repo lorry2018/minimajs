@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>core/Framework.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Constants.html">Constants</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Extension.html">Extension</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="ExtensionAction.html">ExtensionAction</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="FrameworkState.html">FrameworkState</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Minima.html">Minima</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Minima.html#.addService">addService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Minima.html#.getDefaultService">getDefaultService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Minima.html#.getExtensions">getExtensions</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Minima.html#.getPlugin">getPlugin</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Minima.html#.getPlugin">getPlugin</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Minima.html#.getPlugins">getPlugins</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Minima.html#.getPlugins">getPlugins</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Minima.html#.getServices">getServices</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Minima.html#.removeService">removeService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Minima.html#.start">start</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Minima.html#.stop">stop</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Plugin.html">Plugin</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Plugin.html#.assertResolved">assertResolved</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Plugin.html#.assertUninstalled">assertUninstalled</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Plugin.html#.doStart">doStart</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Plugin.html#.doStop">doStop</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Plugin.html#.loadClass">loadClass</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Plugin.html#.resolveActivator">resolveActivator</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Plugin.html#.start">start</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Plugin.html#.stop">stop</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Plugin.html#.uninstall">uninstall</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="PluginConfiguration.html">PluginConfiguration</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginConfiguration.html#.parseBasic">parseBasic</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginConfiguration.html#.parseDependencies">parseDependencies</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginConfiguration.html#.parseExtensions">parseExtensions</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginConfiguration.html#.parseServices">parseServices</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="PluginContext.html">PluginContext</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.addExtension">addExtension</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.addExtensionChangedListener">addExtensionChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.addExtensionChangedListener">addExtensionChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.addFrameworkStateChangedListener">addFrameworkStateChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.addPluginStateChangedListener">addPluginStateChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.addPluginStateChangedListener">addPluginStateChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.addService">addService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.addServiceChangedListener">addServiceChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.addServiceChangedListener">addServiceChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.dispose">dispose</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.getDefaultService">getDefaultService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.getExtensions">getExtensions</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.getServices">getServices</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.installPlugin">installPlugin</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.removeExtension">removeExtension</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.removeExtensionChangedListener">removeExtensionChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.removeExtensionChangedListener">removeExtensionChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.removeFrameworkStateChangedListener">removeFrameworkStateChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.removePluginStateChangedListener">removePluginStateChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.removePluginStateChangedListener">removePluginStateChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.removeService">removeService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.removeServiceChangedListener">removeServiceChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.removeServiceChangedListener">removeServiceChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.start">start</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.stop">stop</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="PluginMetadata.html">PluginMetadata</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginMetadata.html#.markFailed">markFailed</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginMetadata.html#.markResolvable">markResolvable</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginMetadata.html#.markSuccess">markSuccess</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="PluginState.html">PluginState</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="ResolveState.html">ResolveState</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="ServiceAction.html">ServiceAction</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="ServiceRegistry.html">ServiceRegistry</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Version.html">Version</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Version.html#.compare">compare</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Version.html#.parse">parse</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">core/Framework.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import EventManager from './EventManager';
+import FrameworkState from './FrameworkState';
+import PluginInstaller from './PluginInstaller';
+import PluginResolver from './PluginResolver';
+import PluginStarter from './PluginStarter';
+import ServiceManager from '../service/ServiceManager';
+import ExtensionManager from '../plugin/ExtensionManager';
+import Assert from '../utility/Assert';
+import log from '../utility/log';
+import Minima from '../Minima';
+
+/**
+ * 插件框架核心类，组合各个模块实现插件框架启动和停止。暂时不支持直接框架重启，如果要支持重启，则需要对组合的资源进行释放。
+ * 
+ * @ignore
+ * @export
+ * @class Framework
+ */
+export default class Framework {
+
+    /**
+     * 创建一个插件框架实例
+     * 
+     * @ignore
+     * @param {Minima} minima 插件框架外部类
+     * @memberof Framework
+     */
+    constructor(minima) {
+        Assert.notNull('minima', minima);
+
+        this._minima = minima;
+        this._startLevel = minima.startLevel;
+        this._pluginsDirectories = minima.pluginsDirectories;
+
+        this._state = FrameworkState.CREATED;
+
+        this._eventManager = new EventManager();
+        this._serviceManager = new ServiceManager(this);
+        this._extensionManager = new ExtensionManager(this);
+        this._pluginInstaller = new PluginInstaller(this);
+
+        this._pluginResolver;
+        this._pluginStarter;
+
+        this.start = this.start.bind(this);
+        this.stop = this.stop.bind(this);
+        this.doStop = this.doStop.bind(this);
+    }
+
+    /**
+     * 插件框架目前的状态
+     * 
+     * @type {FrameworkState}
+     * @memberof Framework
+     */
+    get state() {
+        return this._state;
+    }
+
+    /**
+     * 更改插件框架状态，仅内部使用
+     * 
+     * @type {FrameworkState}
+     * @memberof Framework
+     */
+    set state(state) {
+        let previous = this._state;
+        this._state = state;
+        this._eventManager.fireFrameworkStateChanged(this, previous, state);
+    }
+
+    /**
+     * 插件集合的目录
+     * 
+     * @type {string[]}
+     * @readonly
+     * @memberof Framework
+     */
+    get pluginsDirectories() {
+        return this._pluginsDirectories;
+    }
+
+    /**
+     * 事件管理器
+     * 
+     * @type {EventManager}
+     * @readonly
+     * @memberof Framework
+     */
+    get eventManager() {
+        return this._eventManager;
+    }
+
+    /**
+     * 服务管理器
+     * 
+     * @type {ServiceManager}
+     * @readonly
+     * @memberof Framework
+     */
+    get serviceManager() {
+        return this._serviceManager;
+    }
+
+    /**
+     * 扩展点管理器
+     * 
+     * @type {ExtensionManager}
+     * @readonly
+     * @memberof Framework
+     */
+    get extensionManager() {
+        return this._extensionManager;
+    }
+
+    /**
+     * 插件安装器
+     * 
+     * @type {PluginInstaller}
+     * @readonly
+     * @memberof Framework
+     */
+    get pluginInstaller() {
+        return this._pluginInstaller;
+    }
+
+    /**
+     * 插件解析器
+     * 
+     * @type {PluginResolver}
+     * @readonly
+     * @memberof Framework
+     */
+    get pluginResolver() {
+        return this._pluginResolver;
+    }
+
+    /**
+     * 插件框架启动级别
+     * 
+     * @type {number}
+     * @readonly
+     * @memberof Framework
+     */
+    get startLevel() {
+        return this._startLevel;
+    }
+
+    /**
+     * 启动插件框架
+     * 
+     * @memberof Framework
+     */
+    start() {
+        this._pluginInstaller.installPlugins();
+        let pluginConfigurations = [];
+        for (let pair of this._pluginInstaller.plugins) {
+            let plugin = pair[1];
+            pluginConfigurations.push(plugin.pluginConfiguration);
+        }
+        this._pluginResolver = new PluginResolver(pluginConfigurations);
+        this._pluginResolver.resolve();
+
+        this._pluginStarter = new PluginStarter(this, this._pluginInstaller.plugins);
+        this._pluginStarter.startPlugins();
+
+        this.state = FrameworkState.STARTED;
+    }
+
+    /**
+     * 停止插件框架
+     * 
+     * @memberof Framework
+     */
+    stop() {
+        if (this.state !== FrameworkState.STARTED) {
+            return;
+        }
+
+        this.state = FrameworkState.STOPPING;
+        try {
+            this.doStop();
+        } catch (error) {
+            log.logger.error(`Failed to stop the framework since the error ${error.message}.`, error);
+        } finally {
+            this.state = FrameworkState.STOPPED;
+        }
+    }
+
+    /**
+     * 停止插件框架，清理资源
+     * 
+     * @memberof Framework
+     */
+    doStop() {
+        this._pluginStarter.stopPlugins();
+
+        this._eventManager.dispose();
+        this._extensionManager.dispose();
+        this._serviceManager.dispose();
+        this._pluginStarter.dispose();
+        this._pluginResolver.dispose();
+        this._pluginInstaller.dispose();
+    }
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Oct 18 2017 23:16:27 GMT+0800 (CST) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

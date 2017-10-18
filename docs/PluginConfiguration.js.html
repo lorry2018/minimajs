@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>PluginConfiguration.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Constants.html">Constants</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Extension.html">Extension</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="ExtensionAction.html">ExtensionAction</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="FrameworkState.html">FrameworkState</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Minima.html">Minima</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Minima.html#.addService">addService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Minima.html#.getDefaultService">getDefaultService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Minima.html#.getExtensions">getExtensions</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Minima.html#.getPlugin">getPlugin</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Minima.html#.getPlugin">getPlugin</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Minima.html#.getPlugins">getPlugins</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Minima.html#.getPlugins">getPlugins</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Minima.html#.getServices">getServices</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Minima.html#.removeService">removeService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Minima.html#.start">start</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Minima.html#.stop">stop</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Plugin.html">Plugin</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Plugin.html#.assertResolved">assertResolved</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Plugin.html#.assertUninstalled">assertUninstalled</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Plugin.html#.doStart">doStart</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Plugin.html#.doStop">doStop</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Plugin.html#.loadClass">loadClass</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Plugin.html#.resolveActivator">resolveActivator</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Plugin.html#.start">start</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Plugin.html#.stop">stop</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Plugin.html#.uninstall">uninstall</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="PluginConfiguration.html">PluginConfiguration</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginConfiguration.html#.parseBasic">parseBasic</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginConfiguration.html#.parseDependencies">parseDependencies</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginConfiguration.html#.parseExtensions">parseExtensions</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginConfiguration.html#.parseServices">parseServices</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="PluginContext.html">PluginContext</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.addExtension">addExtension</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.addExtensionChangedListener">addExtensionChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.addExtensionChangedListener">addExtensionChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.addFrameworkStateChangedListener">addFrameworkStateChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.addPluginStateChangedListener">addPluginStateChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.addPluginStateChangedListener">addPluginStateChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.addService">addService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.addServiceChangedListener">addServiceChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.addServiceChangedListener">addServiceChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.dispose">dispose</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.getDefaultService">getDefaultService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.getExtensions">getExtensions</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.getServices">getServices</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.installPlugin">installPlugin</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.removeExtension">removeExtension</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.removeExtensionChangedListener">removeExtensionChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.removeExtensionChangedListener">removeExtensionChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.removeFrameworkStateChangedListener">removeFrameworkStateChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.removePluginStateChangedListener">removePluginStateChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.removePluginStateChangedListener">removePluginStateChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.removeService">removeService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.removeServiceChangedListener">removeServiceChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.removeServiceChangedListener">removeServiceChangedListener</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.start">start</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginContext.html#.stop">stop</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="PluginMetadata.html">PluginMetadata</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginMetadata.html#.markFailed">markFailed</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginMetadata.html#.markResolvable">markResolvable</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="PluginMetadata.html#.markSuccess">markSuccess</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="PluginState.html">PluginState</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="ResolveState.html">ResolveState</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="ServiceAction.html">ServiceAction</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="ServiceRegistry.html">ServiceRegistry</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Version.html">Version</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Version.html#.compare">compare</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Version.html#.parse">parse</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">PluginConfiguration.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import Assert from './utility/Assert';
+import Strings from './utility/Strings';
+import Version from './Version';
+import Constants from './Constants';
+import PluginState from './PluginState';
+
+/**
+ * 插件配置解析结果
+ * 
+ * @export
+ * @class PluginConfiguration
+ */
+export default class PluginConfiguration {
+    /**
+     * 创建一个插件配置解析类
+     * 
+     * @ignore
+     * @param {string} pluginConfigFile 插件配置文件plugin.json文件路径 
+     * @memberof PluginConfiguration
+     */
+    constructor(pluginConfigFile) {
+        if (pluginConfigFile === undefined) {
+            return;
+        }
+
+        Assert.notExists(pluginConfigFile);
+
+        this._pluginConfigFile = pluginConfigFile;
+        this._pluginConfigurationData = require(pluginConfigFile);
+
+        this._dependencies = [];
+        this._services = [];
+        this._extensions = [];
+
+        Assert.notNull('pluginConfiguration', this._pluginConfigurationData);
+        Assert.notEmpty('id', this._pluginConfigurationData.id);
+
+        this.parseBasic = this.parseBasic.bind(this);
+        this.parseStoppable = this.parseStoppable.bind(this);
+        this.parseDependencies = this.parseDependencies.bind(this);
+        this.parseServices = this.parseServices.bind(this);
+        this.parseExtensions = this.parseExtensions.bind(this);
+
+        this.parseBasic();
+        this.parseDependencies();
+        this.parseServices();
+        this.parseExtensions();
+    }
+
+    /**
+     * 获取plugin.json对应的JSON对象
+     * 
+     * @type {Object}
+     * @readonly
+     * @memberof PluginConfiguration
+     */
+    get pluginConfigurationData() {
+        return this._pluginConfigurationData;
+    }
+
+    /**
+     * 插件配置文件plugin.json的路径
+     * 
+     * @readonly
+     * @memberof PluginConfiguration
+     */
+    get pluginConfigFileFullPath() {
+        return this._pluginConfigFile;
+    }
+
+    /**
+     * 插件id
+     * 
+     * @type {string}
+     * @readonly
+     * @memberof PluginConfiguration
+     */
+    get id() {
+        return this._id;
+    }
+
+    /**
+     * 插件名称
+     * 
+     * @type {string}
+     * @readonly
+     * @memberof PluginConfiguration
+     */
+    get name() {
+        return this._name;
+    }
+
+    /**
+     * 插件描述
+     * 
+     * @type {string}
+     * @readonly
+     * @memberof PluginConfiguration
+     */
+    get description() {
+        return this._description;
+    }
+
+    /**
+     * 插件启动级别，默认为50，越小越早启动
+     * 
+     * @type {number}
+     * @readonly
+     * @memberof PluginConfiguration
+     */
+    get startLevel() {
+        return this._startLevel;
+    }
+
+    /**
+     * 插件初始状态，默认为PluginState.ACTIVE
+     * 
+     * @type PluginState
+     * @readonly
+     * @memberof PluginConfiguration
+     */
+    get initializedState() {
+        return this._initializedState;
+    }
+
+    /**
+     * 插件版本
+     * 
+     * @type {Version}
+     * @readonly
+     * @memberof PluginConfiguration
+     */
+    get version() {
+        return this._version;
+    }
+
+    /**
+     * 插件激活器
+     * 
+     * @readonly
+     * @memberof PluginConfiguration
+     */
+    get activator() {
+        return this._activator;
+    }
+
+    /**
+     * 是否允许停止，默认为true
+     * 
+     * @readonly
+     * @memberof PluginConfiguration
+     */
+    get stoppable() {
+        return this._stoppable;
+    }
+
+    /**
+     * 依赖关系的JSON格式
+     * 
+     * @type {Object[]}
+     * @readonly
+     * @memberof PluginConfiguration
+     */
+    get dependencies() {
+        return this._dependencies;
+    }
+
+    /**
+     * 服务的JSON格式
+     * 
+     * @type {Object[]}
+     * @readonly
+     * @memberof PluginConfiguration
+     */
+    get services() {
+        return this._services;
+    }
+
+    /**
+     * 扩展的JSON格式
+     * 
+     * @type {Object[]}
+     * @readonly
+     * @memberof PluginConfiguration
+     */
+    get extensions() {
+        return this._extensions;
+    }
+
+    /**
+     * 解析基本信息
+     * 
+     * @memberof PluginConfiguration
+     */
+    parseBasic() {
+        this._id = this._pluginConfigurationData.id;
+        this._name = this._pluginConfigurationData.name;
+        this._activator = this._pluginConfigurationData.activator;
+
+        if (!Strings.hasText(this._name)) {
+            this._name = this._id;
+        }
+
+        this._description = this._pluginConfigurationData.description;
+
+        if (!Strings.hasText(this._description)) {
+            this._description = this._name;
+        }
+
+        this._version = new Version(this._pluginConfigurationData.version);
+
+        this._startLevel = parseInt(this._pluginConfigurationData.startLevel || Constants.defaultStartLevel);
+        if (isNaN(this._startLevel)) {
+            throw new Error(`The startLevel is not legal number of ${this.pluginConfigFileFullPath}.`);
+        }
+
+        if (this._pluginConfigurationData.initializedState === 'installed') {
+            this._initializedState = PluginState.INSTALLED;
+        } else if (this._pluginConfigurationData.initializedState === undefined || this._pluginConfigurationData.initializedState === 'active') {
+            this._initializedState = PluginState.ACTIVE;
+        } else {
+            throw new Error(`The initializedState must be installed or active of ${this.pluginConfigFileFullPath}.`);
+        }
+
+        this.parseStoppable();
+    }
+
+    parseStoppable() {
+        let stoppable = this._pluginConfigurationData.stoppable;
+        if (stoppable === undefined || stoppable === null) {
+            stoppable = true;
+        } else {
+            stoppable = !!(stoppable);
+        }
+        this._stoppable = stoppable;
+    }
+
+    /**
+     * 解析依赖关系
+     * 
+     * @memberof PluginConfiguration
+     */
+    parseDependencies() {
+        if (!(this._pluginConfigurationData.dependencies &amp;&amp; this._pluginConfigurationData.dependencies instanceof Array)) {
+            return;
+        }
+
+        for (let dependency of this._pluginConfigurationData.dependencies) {
+            if (!Strings.hasText(dependency.id)) {
+                throw new Error(`The dependent plugin id can not be empty of ${this.pluginConfigFileFullPath}.`);
+            }
+            this._dependencies.push({ id: dependency.id, version: new Version(dependency.version) });
+        }
+    }
+
+    /**
+     * 解析服务
+     * 
+     * @memberof PluginConfiguration
+     */
+    parseServices() {
+        if (!(this._pluginConfigurationData.services &amp;&amp; this._pluginConfigurationData.services instanceof Array)) {
+            return;
+        }
+
+        for (let service of this._pluginConfigurationData.services) {
+            if (!Strings.hasText(service.name)) {
+                throw new Error(`The service name can not be empty of ${this.pluginConfigFileFullPath}.`);
+            }
+            if (!Strings.hasText(service.service)) {
+                throw new Error(`The service can not be empty of ${this.pluginConfigFileFullPath}.`);
+            }
+            if (!service.properties) {
+                service.properties = {};
+            }
+            this._services.push({ name: service.name, service: service.service, properties: service.properties });
+        }
+    }
+
+    /**
+     * 解析扩展
+     * 
+     * @memberof PluginConfiguration
+     */
+    parseExtensions() {
+        if (!(this._pluginConfigurationData.extensions &amp;&amp; this._pluginConfigurationData.extensions instanceof Array)) {
+            return;
+        }
+
+        for (let extension of this._pluginConfigurationData.extensions) {
+            if (!Strings.hasText(extension.id)) {
+                throw new Error(`The extension id can not be empty of ${this.pluginConfigFileFullPath}.`);
+            }
+            if (!extension.data) {
+                throw new Error(`The extension data can not be null of ${this.pluginConfigFileFullPath}.`);
+            }
+            this._extensions.push({ 'id': extension.id, 'data': extension.data });
+        }
+    }
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Oct 18 2017 23:16:27 GMT+0800 (CST) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
