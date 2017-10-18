@@ -11,7 +11,7 @@ There are three features:
 
 The architecture of minimajs is shown as below.
 
-<img src="https://github.com/lorry2018/minimajs/blob/master/docs/imgs/arch.png" align="left" width="50%" >
+<img src="https://github.com/lorry2018/minimajs/blob/master/docs/imgs/arch.png" align="left" width="50%" ><br>
 
 ## Install
 
