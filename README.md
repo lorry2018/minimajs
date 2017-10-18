@@ -9,18 +9,18 @@ The architecture of minimajs is shown as below.
 ![image](https://github.com/lorry2018/minimajs/blob/master/docs/imgs/arch.png)
  
 There are three features:
-(1) Dynamic plugin: define the plugin structure, plugin config, plugin dependencies, plugin lifecycle, plugin class loading;
-(2) Service: the communication between plugins with SOA;
-(3) Extension: the extension supporting for plugin.
++ Dynamic plugin: define the plugin structure, plugin config, plugin dependencies, plugin lifecycle, plugin class loading;
++ Service: the communication between plugins with SOA;
++ Extension: the extension supporting for plugin.
 
 ## Prerequisite
-(1) NodeJS is installed.
-(2) Babel is required.
++ NodeJS is installed.
++ Babel is required.
 ```sh
 $ npm install --g babel-cli
 ```
-(3) ESLint and JSHint is optional.
-(4) IDE is vscode, I like it very mush.
++ ESLint and JSHint is optional.
++ IDE is vscode, I like it very mush.
 
 ## Install
 
