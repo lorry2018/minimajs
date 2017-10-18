@@ -5,12 +5,8 @@
 Minima is a simple yet powerfully plugin framework, based on NodeJS, developed by ES6.
 
 The architecture of minimajs is shown as below.
-<p>
-<a href="https://github.com/lorry2018/minimajs/blob/master/docs/imgs/arch.png">
-    <img src="https://github.com/lorry2018/minimajs/blob/master/docs/imgs/arch.png" align="left" width="200" >
-</a>
-<br/>
-</p>
+
+![image](https://github.com/lorry2018/minimajs/blob/master/docs/imgs/arch.png)
  
 There are three features:
 (1) Dynamic plugin: define the plugin structure, plugin config, plugin dependencies, plugin lifecycle, plugin class loading;
