@@ -2,11 +2,7 @@
     "files.exclude": {
         "node_modules/": true,
         "build/": true,
-        "*.log": true,
-        "*.log.*": true,
-        "docs": true,
-        "robots": true,
-        "jmeters": true
+        "*.log": true
     },
     "jslint.enable": false,
     "eslint.enable": false
