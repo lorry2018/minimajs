@@ -43,12 +43,12 @@ let minima = new Minima(__dirname + '/plugins');
 minima.start();
 ```
 
-**Examples**
+**Plugin Examples**
 
 Create a simple plugin in plugins directory as below.
 
-```js
-// 1 plugin.json
+The plugin.json in demoPlugin folder is shown as below. It define a logService here.
+```json
 {
     "id": "demoPlugin",
     "startLevel": 5,
@@ -58,7 +58,11 @@ Create a simple plugin in plugins directory as below.
         "service": "LogService.js"
     }]
 }
-// 2 Activator.js
+```
+
+The Activator.js in demoPlugin folder is shown as below. It handles the 'commands' extensions here.
+
+```js
 import { Minima, Extension, ExtensionAction, PluginContext, log } from 'minimajs';
 
 export default class Activator {
@@ -100,7 +104,9 @@ export default class Activator {
 }
 ```
 
-Then building another plugin as below.
+Then create another plugin named demoPlugin2 as below. The demoPlugin2 will consume the logService registered by demoPlugin and register the extension to 'commands' extensionPoint. 
+
+In the EchoCommand, the demoPlugin will load a class from demoPlugin2.
 
 ```js
 // 1 plugin.config
@@ -169,6 +175,13 @@ After starting the framework, we can see the logs as below.
 [2017-7-30 11:00:15.879] [INFO] log - The plugin demoPlugin2 is active.
 [2017-7-30 11:00:15.879] [INFO] log - The plugins with active initializedState are started.
 ```
+
+## Guidelines (The Update will be soon...)
+
+### How to create a minima instance
+### How to create a plugin
+### How to create a service
+### How to create a extension
 
 ## About
 
