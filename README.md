@@ -239,6 +239,63 @@ export default class Activator {
 ```
 
 ### How to create a plugin
+
+#### 1 Plugin Overview
+
+In minimajs, the plugin = plugin.json + Activator.js(Optional) + *.*(Other resource, Optional).
+The plugin directory is a directory which contains the plugin.json file. The plugin.json is to describe the details about the plugin as shown below.
++ Basic information, such as id, name, version, activator, and so on.
++ Dependent plugins.
++ Services defined by plugin.
++ Extensions defined by plugin.
+
+Additionally, a plugin will define a Activator commonly. The Activator is a JS file with start(context) and stop(context) functions defined. The start(context) is called when plugin is starting, while the stop(context) is called when stopping. The default Activator file is Activator.js. This file is optional, thus, the plugin is started or stopped directly. The plugin may include other files also, such as HTML, CSS, and so on.
+
+#### 2 The plugin.json
+
+Below is a fully plugin.json example.
+
+```json
+{
+    "id": "demoPlugin",
+    "name": "demoPlugin",
+    "description": "The demo plugin.",
+    "version": "1.0.1",
+    "startLevel": 5,
+    "initializedState": "active",
+    "activator": "PluginActivator.js",
+    "stoppable": true,
+    "dependencies": [{
+        "id": "demoPlugin",
+        "version": "1.0.0"
+    }],
+    "services": [{
+        "name": "myService",
+        "service": "MyService.js",
+        "properties": {
+            "vendor": "lorry"
+        }
+    }],
+    "extensions": [{
+        "id": "myExtension",
+        "data": {
+            "extensionData": "lorry"
+        }
+    }, {
+        "id": "myExtension2",
+        "data": {
+            "extensionData": "lorry2"
+        }
+    }, {
+        "id": "minima.menus",
+        "data": [{
+            "url": "view.js",
+            "text": "view"
+        }]
+    }]
+}
+```
+
 ### How to create a service
 ### How to create a extension
 
