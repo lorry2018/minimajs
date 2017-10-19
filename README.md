@@ -229,6 +229,8 @@ You can use the Minima.instance to access the framework in the each plugin. The 
 export default class Activator {
     start(context) {
         let logService = Minima.instance.getDefaultService('logService');
+        // Or use the context instead
+        // let logService = context.getDefaultService('logService');
         logService.log('Get the logService successfully.');
     }
 
