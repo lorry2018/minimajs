@@ -181,7 +181,10 @@ After starting the framework, we can see the logs as below.
 
 ### How to create and start a Minima instance
 
-#### 1 Create and start Minima framework as below
+#### 1 Create and start Minima framework
+
+Typical usage as below.
+
 ```js
 let minima = new Minima(path.join(__dirname, 'plugins'));
 minima.start();
