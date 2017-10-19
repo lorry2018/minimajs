@@ -296,8 +296,34 @@ Below is a fully plugin.json example.
 }
 ```
 
+The basic description of plugin.json is shown as below.
++ id: Required, can not be duplicated. The ID of a plugin and will be used to get the plugin loaded by the minimajs framework.
++ name: Optional, the name.
++ description: Optional, the details description.
++ version: Optional, by default, it is 1.0.0.
++ startLevel: Optional, by default, it is 50. The startLevel is used to control the sequence of plugin starting. The smallest of startLevel, the first to be started. Note that, the frameworkStartLevel is 100 by default, thus the plugins with startLevel bigger than 100 can not be started any more.
++ initializedState: Optional, by default, it is 'active', means that the plugin will be started while Minima.start is called. You can define it to 'installed' if you do not want to be started with Minima.start.
++ activator: Optional, if the Activator is not defined or is defined with file named Activator.js, the activator can be not defined. If you has Activator defined, you need to defined here, such as, "activator": "PluginActivator.js".
++ stoppable: Optional, means the plugin can be stopped or not. By default, it is true.
+
+The services description of plugin.json is shown as below.
+
+#### 3 Activator
+
+#### 4 PluginContext
+
+#### 5 Plugin
+
 ### How to create a service
+#### 1 Define service
+#### 2 Register service
+#### 3 Get service
+#### 4 Event
+
 ### How to create a extension
+#### 1 Define extensionPoint and handle it
+#### 2 Extension
+#### 3 Event
 
 ## About
 
