@@ -203,5 +203,3 @@ Any problems, please contact me with the QQ Group as below.
 ### License
 
 Apache License 2.0.
-
-***
