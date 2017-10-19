@@ -60,7 +60,7 @@ The plugin.json in demoPlugin folder is shown as below. It define a logService h
 }
 ```
 
-The Activator.js in demoPlugin folder is shown as below. It handles the 'commands' extensions here.
+The Activator.js in demoPlugin folder is shown as below. It handles the 'commands' extensionPoint here.
 
 ```js
 import { Minima, Extension, ExtensionAction, PluginContext, log } from 'minimajs';
@@ -106,7 +106,7 @@ export default class Activator {
 
 Then create another plugin named demoPlugin2 as below. The demoPlugin2 will consume the logService registered by demoPlugin and register the extension to 'commands' extensionPoint. 
 
-In the EchoCommand, the demoPlugin will load a class from demoPlugin2.
+In the EchoCommand, the demoPlugin2 will load a class from demoPlugin.
 
 ```js
 // 1 plugin.config
