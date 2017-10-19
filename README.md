@@ -155,28 +155,19 @@ export default class Activator {
 After starting the framework, we can see the logs as below.
 
 ```js
-[2017-07-30 16:14:53.128] [INFO] console - Starting the plugins with active initializedState.
-[2017-07-30 16:14:53.129] [INFO] console - The plugin demoPlugin is starting.
-[2017-07-30 16:14:53.132] [INFO] console - INFO: The plugin demoPlugin is started.
-[2017-07-30 16:14:53.132] [INFO] console - The plugin demoPlugin is active.
-[2017-07-30 16:14:53.133] [INFO] console - The plugin demoPlugin2 is starting.
-[2017-07-30 16:14:53.135] [INFO] console - INFO: The plugin demoPlugin2 is started.
-[2017-07-30 16:14:53.137] [INFO] console - Get the myService instance successfully.
-[2017-07-30 16:14:53.137] [INFO] console - Service myService is register.
-[2017-07-30 16:14:53.139] [INFO] console - The extension myExtension is added.
-[2017-07-30 16:14:53.140] [INFO] console - The extension count is 1.
-[2017-07-30 16:14:53.141] [INFO] console - The extension myExtension2 is added.
-[2017-07-30 16:14:53.141] [INFO] console - The extension count is 1.
-[2017-07-30 16:14:53.142] [INFO] console - The plugin demoPlugin2 is active.
-[2017-07-30 16:14:53.143] [INFO] console - The plugins with active initializedState are started.
-[2017-07-30 16:14:53.144] [INFO] console - Stopping all plugins.
-[2017-07-30 16:14:53.145] [INFO] console - The plugin demoPlugin is stopping.
-[2017-07-30 16:14:53.146] [INFO] console - INFO: The plugin demoPlugin is stopped.
-[2017-07-30 16:14:53.147] [INFO] console - The plugin demoPlugin is stopped.
-[2017-07-30 16:14:53.147] [INFO] console - The plugin demoPlugin2 is stopping.
-[2017-07-30 16:14:53.148] [INFO] console - INFO: The plugin demoPlugin2 is stopped.
-[2017-07-30 16:14:53.148] [INFO] console - The plugin demoPlugin2 is stopped.
-[2017-07-30 16:14:53.148] [INFO] console - All plugins are stopped.
+[2017-7-30 11:00:15.852] [INFO] log - Loading plugins from /Users/lorry/VSCodeProjects/minima-github/minimajs/example/src/plugins.
+[2017-7-30 11:00:15.856] [INFO] log - Plugin demoPlugin is loaded from /Users/lorry/VSCodeProjects/minima-github/minimajs/example/src/plugins/demoPlugin.
+[2017-7-30 11:00:15.857] [INFO] log - Plugin demoPlugin2 is loaded from /Users/lorry/VSCodeProjects/minima-github/minimajs/example/src/plugins/demoPlugin2.
+[2017-7-30 11:00:15.857] [INFO] log - Plugins are loaded from /Users/lorry/VSCodeProjects/minima-github/minimajs/example/src/plugins completed.
+[2017-7-30 11:00:15.858] [INFO] log - There are 2 plugins loaded.
+[2017-7-30 11:00:15.860] [INFO] log - Starting the plugins with active initializedState.
+[2017-7-30 11:00:15.861] [INFO] log - The plugin demoPlugin is starting.
+[2017-7-30 11:00:15.865] [INFO] log - The commands extension size is 0.
+[2017-7-30 11:00:15.867] [INFO] log - The plugin demoPlugin is active.
+[2017-7-30 11:00:15.868] [INFO] log - The plugin demoPlugin2 is starting.
+[2017-7-30 11:00:15.878] [INFO] log - The commands extension size is 1.
+[2017-7-30 11:00:15.879] [INFO] log - The plugin demoPlugin2 is active.
+[2017-7-30 11:00:15.879] [INFO] log - The plugins with active initializedState are started.
 ```
 
 ## About
