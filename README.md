@@ -200,6 +200,6 @@ Have 10 years on plugin framework researching.
 Any problems, please contact me with the QQ Group as below.
 ![image](https://github.com/lorry2018/minimajs/blob/master/docs/imgs/qqgroup.jpg)
 
-### License
+## License
 
 Apache License 2.0.
