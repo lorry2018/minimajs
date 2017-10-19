@@ -3,6 +3,7 @@
         "node_modules/": true,
         "build/": true,
         "*.log": true,
-        "docs": true
-    }
+        "docs": false
+    },
+    "git.ignoreLimitWarning": true
 }

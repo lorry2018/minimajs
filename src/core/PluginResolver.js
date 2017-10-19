@@ -207,7 +207,7 @@ export default class PluginResolver {
      * 
      * @param {PluginMetadata[]} pluginMetadatas 
      * @param {string} id 
-     * @returns 
+     * @returns {boolean} 如果存在返回true，否则返回false
      * @memberof PluginResolver
      */
     existsInPluginMetadatas(pluginMetadatas, id) {
