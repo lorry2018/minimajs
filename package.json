@@ -1,7 +1,7 @@
 {
     "name": "minimajs",
     "version": "1.2.37",
-    "description": "Minima is a simple yet powerful plugin framework for node.",
+    "description": "Minima is a OSGi-like, simple yet powerful plugin framework for NodeJS.",
     "main": "index.js",
     "scripts": {
         "eslint": "eslint --ignore-path .eslintignore ./",
@@ -13,8 +13,16 @@
         "dopublish": "npm publish",
         "unpublish": "npm unpublish --force"
     },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/lorry2018/minimajs.git"
+    },
     "author": "Lorry Chen",
-    "license": "ISC",
+    "license": "Apache License 2.0",
+    "bugs": {
+        "url": "https://github.com/lorry2018/minimajs/issues"
+    },
+    "homepage": "https://github.com/lorry2018/minimajs#readme",
     "dependencies": {
         "log4js": "^1.1.1",
         "mocha": "^3.4.2",
