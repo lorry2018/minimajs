@@ -195,7 +195,7 @@ For bugs and feature requests, [please contact me](mailto:23171532@qq.com).
 
 Have 10 years on plugin framework researching.
 
-## Discussing QQ Group
+## Discussion QQ Group
 
 Any problems, please contact me with the QQ Group as below.
 ![image](https://github.com/lorry2018/minimajs/blob/master/docs/imgs/qqgroup.jpg)
