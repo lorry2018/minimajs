@@ -51,25 +51,22 @@ Create a simple plugin in plugins directory as below.
 // 1 plugin.json
 {
     "id": "demoPlugin",
-    "startLevel": 3,
-    "version": "1.0.0"
+    "startLevel": 5,
+    "version": "1.0.0",
+    "services": [{
+        "name": "logService",
+        "service": "LogService.js"
+    }]
 }
 // 2 Activator.js
-import { ServiceAction, ExtensionAction, PluginContext, Plugin, log } from 'minimajs';
+import { Minima, Extension, ExtensionAction, PluginContext, log } from 'minimajs';
 
 export default class Activator {
-    /**
-     * 插件上下文缓存
-     * 
-     * @type {PluginContext}
-     * @static
-     * @memberof Activator
-     */
-    static context = null;
     constructor() {
         this.start = this.start.bind(this);
         this.stop = this.stop.bind(this);
-        this.serviceChangedListener = this.serviceChangedListener.bind(this);
+
+        this.handleCommandExtensions = this.handleCommandExtensions.bind(this);
         this.extensionChangedListener = this.extensionChangedListener.bind(this);
     }
 
@@ -80,59 +77,26 @@ export default class Activator {
      * @memberof Activator
      */
     start(context) {
-        Activator.context = context;
-        Activator.context.addServiceChangedListener(this.serviceChangedListener);
-        Activator.context.addExtensionChangedListener(this.extensionChangedListener);
-        log.logger.info(`INFO: The plugin ${context.plugin.id} is started.`);
+        context.addExtensionChangedListener(this.extensionChangedListener);
+        this.handleCommandExtensions();
     }
 
-    /**
-     * 服务监听器
-     * 
-     * @param {string} name 服务名称
-     * @param {ServiceAction} action 服务变化活动
-     * @memberof Activator
-     */
-    serviceChangedListener(name, action) {
-        if (name === 'myService' && action === ServiceAction.ADDED) {
-            let myService = Activator.context.getDefaultService(name);
-            if (myService) {
-                log.logger.info(`Get the myService instance successfully.`);
-            }
-        } else if (action === ServiceAction.REMOVED) {
-            log.logger.info(`The service ${name} is removed.`);
+    handleCommandExtensions() {
+        let extensions = Minima.instance.getExtensions('commands');
+        for (let extension of extensions) {
+            let Command = extension.owner.loadClass(extension.data.command).default;
+            let command = new Command();
+            command.run();
         }
+
+        log.logger.info(`The commands extension size is ${extensions.size}.`);
     }
 
-    /**
-     * 扩展变更监听器
-     * 
-     * @param {Extension} extension 扩展对象
-     * @param {ExtensionAction} action 扩展对象变化活动
-     * @memberof Activator
-     */
     extensionChangedListener(extension, action) {
-        if (action === ExtensionAction.ADDED) {
-            log.logger.info(`The extension ${extension.id} is added.`);
-            let extensions = Activator.context.getExtensions('myExtension');
-            log.logger.info(`The extension count is ${extensions.size}.`);
-        }
-
-        if (action === ExtensionAction.REMOVED) {
-            log.logger.info(`The extension ${extension.id} is removed.`);
-        }
+        this.handleCommandExtensions();
     }
 
-    /**
-     * 插件出口
-     * 
-     * @param {PluginContext} context 插件上下文
-     * @memberof Activator
-     */
-    stop(context) {
-        Activator.context = null;
-        log.logger.info(`INFO: The plugin ${context.plugin.id} is stopped.`);
-    }
+    stop(context) {}
 }
 ```
 
@@ -142,83 +106,48 @@ Then building another plugin as below.
 // 1 plugin.config
 {
     "id": "demoPlugin2",
-    "name": "demoPlugin2Test",
-    "description": "The demo plugin2.",
-    "version": "1.0.1",
-    "startLevel": 5,
-    "initializedState": "active",
-    "activator": "PluginActivator.js",
+    "version": "1.0.0",
     "dependencies": [{
         "id": "demoPlugin",
         "version": "1.0.0"
     }],
-    "services": [{
-        "name": "myService",
-        "service": "MyService.js",
-        "properties": {
-            "vendor": "lorry"
-        }
-    }],
     "extensions": [{
-        "id": "myExtension",
+        "id": "commands",
         "data": {
-            "extensionData": "lorry"
-        }
-    }, {
-        "id": "myExtension2",
-        "data": {
-            "extensionData": "lorry2"
+            "name": "echo",
+            "command": "commands/EchoCommand.js"
         }
     }]
 }
-// 2 MyService.js
-export default class MyService {
+// 2 Activator.js
+import { PluginContext, log } from 'minimajs';
 
-}
-// 3 PluginActivator.js
-import { ServiceAction, PluginContext, Plugin, log } from 'minimajs';
+export default class Activator {
+    static logService = null;
 
-export default class PluginActivator {
     constructor() {
         this.start = this.start.bind(this);
         this.stop = this.stop.bind(this);
-        this.serviceChanged = this.serviceChanged.bind(this);
     }
 
     /**
-     * 启动插件
+     * 插件入口
      * 
      * @param {PluginContext} context 插件上下文
-     * @memberof PluginActivator
+     * @memberof Activator
      */
     start(context) {
-        log.logger.info(`INFO: The plugin ${context.plugin.id} is started.`);
-        context.addServiceChangedListener(this.serviceChangedListener);
-    }
-
-    /**
-     * 服务监听
-     * 
-     * @param {string} name 服务名称
-     * @param {ServiceAction} action 服务活动
-     * @memberof PluginActivator
-     */
-    serviceChangedListener(name, action) {
-        if (action === ServiceAction.ADDED) {
-            log.logger.info(`Service ${name} is register.`);
-        } else {
-            log.logger.info(`Service ${name} is unregister.`);
+        let logService = context.getDefaultService('logService');
+        if (!logService) {
+            throw new Error('The logServie can not be null.');
         }
+        Activator.logService = logService;
+
+        logService.log('Get the logService successfully.');
     }
 
-    /**
-     * 停止插件
-     * 
-     * @param {PluginContext} context 插件上下文
-     * @memberof PluginActivator
-     */
     stop(context) {
-        log.logger.info(`INFO: The plugin ${context.plugin.id} is stopped.`);
+
     }
 }
 ```

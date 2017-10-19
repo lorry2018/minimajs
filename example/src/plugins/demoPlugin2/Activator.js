@@ -1,4 +1,4 @@
-import { Extension, ExtensionAction, PluginContext, log } from 'minimajs';
+import { PluginContext, log } from 'minimajs';
 
 export default class Activator {
     static logService = null;
