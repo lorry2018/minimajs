@@ -2,7 +2,7 @@
 
 # minimajs
 
-MinimaJs is a simple yet powerfully plugin framework, based on NodeJS, developed by ES6, with IDE VSCode.
+MinimaJs is a simple yet powerful plugin framework, based on NodeJS, developed by ES6, with IDE VSCode.
 
 The architecture of minimajs is shown as below.
 
