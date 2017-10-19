@@ -30,6 +30,11 @@ Install with [npm](https://www.npmjs.com/):
 $ npm install --save minimajs
 ```
 
+## Discussing QQ Group
+
+Any problems, please contact me with the QQ Group as below.
+![image](https://github.com/lorry2018/minimajs/blob/master/docs/imgs/qqgroup.jpg)
+
 ## Usage
 
 The Minima is a plugin framework container. We need to create a plugin framework instance and start it.
