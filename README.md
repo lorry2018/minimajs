@@ -9,15 +9,6 @@ let minima = new Minima(path.join(__dirname, 'plugins'));
 minima.start();
 ```
 
-The architecture of minimajs is shown as below.
-
-![image](https://github.com/lorry2018/minimajs/blob/master/docs/imgs/arch.png)
- 
-There are three features:
-+ Dynamic plugin: define the plugin structure, plugin config, plugin dependencies, plugin lifecycle, plugin class loading;
-+ Service: the communication between plugins with SOA;
-+ Extension: the extension supporting for plugin.
-
 ## Prerequisite
 + NodeJS is installed.
 + Babel is required.
@@ -36,6 +27,15 @@ $ npm install --save minimajs
 ```
 
 ## Usage
+
+The architecture of minimajs is shown as below.
+
+![image](https://github.com/lorry2018/minimajs/blob/master/docs/imgs/arch.png)
+ 
+There are three features:
++ Dynamic plugin: define the plugin structure, plugin config, plugin dependencies, plugin lifecycle, plugin class loading;
++ Service: the communication between plugins with SOA;
++ Extension: the extension supporting for plugin.
 
 The Minima is a plugin framework container. We need to create a plugin framework instance and start it.
 
