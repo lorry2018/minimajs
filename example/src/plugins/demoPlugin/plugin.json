@@ -1,0 +1,9 @@
+{
+    "id": "demoPlugin",
+    "startLevel": 5,
+    "version": "1.0.0",
+    "services": [{
+        "name": "logService",
+        "service": "LogService.js"
+    }]
+}

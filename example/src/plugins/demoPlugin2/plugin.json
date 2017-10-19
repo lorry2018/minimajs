@@ -1,0 +1,15 @@
+{
+    "id": "demoPlugin2",
+    "version": "1.0.0",
+    "dependencies": [{
+        "id": "demoPlugin",
+        "version": "1.0.0"
+    }],
+    "extensions": [{
+        "id": "commands",
+        "data": {
+            "name": "echo",
+            "command": "commands/EchoCommand.js"
+        }
+    }]
+}
