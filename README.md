@@ -4,6 +4,11 @@
 
 MinimaJs is a OSGi-like, simple yet powerful plugin framework, based on NodeJS, developed by ES6, with IDE VSCode.
 
+```js
+let minima = new Minima(path.join(__dirname, 'plugins'));
+minima.start();
+```
+
 The architecture of minimajs is shown as below.
 
 ![image](https://github.com/lorry2018/minimajs/blob/master/docs/imgs/arch.png)
