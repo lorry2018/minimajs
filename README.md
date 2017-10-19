@@ -242,7 +242,7 @@ export default class Activator {
 
 #### 1 Plugin Overview
 
-In minimajs, the plugin = plugin.json + Activator.js(Optional) + *.*(Other resource, Optional).
+In minimajs, the plugin = plugin.json + Activator.js(Optional) + Other JS files or resource files(Other resource, Optional).
 The plugin directory is a directory which contains the plugin.json file. The plugin.json is to describe the details about the plugin as shown below.
 + Basic information, such as id, name, version, activator, and so on.
 + Dependent plugins.
