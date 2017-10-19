@@ -24,7 +24,5 @@ export default class Activator {
         logService.log('Get the logService successfully.');
     }
 
-    stop(context) {
-
-    }
+    stop(context) {}
 }

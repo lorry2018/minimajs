@@ -38,8 +38,9 @@ The Minima is a plugin framework container. We need to create a plugin framework
 
 ```js
 import { Minima } from 'minimajs';
+import path from 'path';
 
-let minima = new Minima(__dirname + '/plugins');
+let minima = new Minima(path.join(__dirname, 'plugins'));
 minima.start();
 ```
 
@@ -152,9 +153,7 @@ export default class Activator {
         logService.log('Get the logService successfully.');
     }
 
-    stop(context) {
-
-    }
+    stop(context) {}
 }
 ```
 
@@ -180,7 +179,60 @@ After starting the framework, we can see the logs as below.
 
 ## Guidelines (The Update will be soon...)
 
-### How to create a minima instance
+### How to create and start a Minima instance
+
+#### 1 Create and start Minima framework as below
+```js
+let minima = new Minima(path.join(__dirname, 'plugins'));
+minima.start();
+```
+
+The Minima instance will find all plugins below the 'plugins' directory and load them to the framework. Then the minimajs framework will resolve the dependencies between the plugins. After calling minima.start, the minimajs framework will start the resolved plugins followed by the startLevel of plugin. The smallest startLevel, the first to be started.
+
+#### 2 Register global service
+
+You can use Minima to register global service, thus all plugins can use this service when starting.
+
+```js
+let minima = new Minima(path.join(__dirname, 'plugins'));
+let logService = new LogService();
+minima.addService('logService', logService);
+minima.start();
+```
+
+The Activator.js of plugin can use this global service directly.
+
+```js
+export default class Activator {
+    start(context) {
+        let logService = context.getDefaultService('logService');
+        logService.log('Get the logService successfully.');
+    }
+
+    stop(context) {}
+}
+```
+
+#### 3 Singleton Minima.instance
+You can use the Minima.instance to access the framework in the each plugin. The Minima framework provides the features as below:
++ Service: Add/Remove/Get
++ Plugin: Get
++ Extension: Get
++ Event: Listen and un-listen the events
++ You can get more details from [api references](https://github.com/lorry2018/minimajs/blob/master/docs/Minima.html).
+
+
+```js
+export default class Activator {
+    start(context) {
+        let logService = Minima.instance.getDefaultService('logService');
+        logService.log('Get the logService successfully.');
+    }
+
+    stop(context) {}
+}
+```
+
 ### How to create a plugin
 ### How to create a service
 ### How to create a extension
