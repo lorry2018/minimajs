@@ -17,7 +17,7 @@ export default class Activator {
     start(context) {
         let logService = context.getDefaultService('logService');
         if (!logService) {
-            throw new Error('The logServie can not be null.');
+            throw new Error('The logService can not be null.');
         }
         Activator.logService = logService;
 
