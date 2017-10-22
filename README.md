@@ -222,7 +222,7 @@ export default class Activator {
 ```
 
 #### 3 Singleton Minima.instance
-You can use the Minima.instance to access the framework in the each plugin. The Minima framework provides the features as below:
+You can use the Minima.instance to access Minima framework in the each plugin. The Minima framework provides the features as below:
 + Service: Add/Remove/Get
 + Plugin: Get
 + Extension: Get
@@ -247,14 +247,14 @@ export default class Activator {
 
 #### 1 Plugin Overview
 
-In minimajs, the plugin = plugin.json + Activator.js(Optional) + Other JS files or resource files(Other resource, Optional).
+In th minimajs framework, the plugin = plugin.json + Activator.js(Optional) + Other JS files or resource files(Optional).
 The plugin directory is a directory which contains the plugin.json file. The plugin.json is to describe the details about the plugin as shown below.
 + Basic information, such as id, name, version, activator, and so on.
 + Dependent plugins.
 + Services defined by plugin.
 + Extensions defined by plugin.
 
-Additionally, a plugin will define a Activator commonly. The Activator is a JS file with start(context) and stop(context) functions defined. The start(context) is called when plugin is starting, while the stop(context) is called when stopping. The default Activator file is Activator.js. This file is optional, thus, the plugin is started or stopped directly. The plugin may include other files also, such as HTML, CSS, and so on.
+Additionally, a plugin will define a Activator commonly. The Activator is a JS file with start(context) and stop(context) functions defined. The start(context) function is called when plugin is starting, while the stop(context) function is called when stopping. The default Activator file is Activator.js. This file is optional, thus, the plugin is started or stopped directly. The plugin may include other files also, such as HTML, CSS, and so on.
 
 #### 2 The plugin.json
 
@@ -306,12 +306,12 @@ The basic description of plugin.json is shown as below.
 + name: Optional, the name.
 + description: Optional, the details description.
 + version: Optional, by default, it is 1.0.0.
-+ startLevel: Optional, by default, it is 50. The startLevel is used to control the sequence of plugin starting. The smallest of startLevel, the first to be started. Note that, the frameworkStartLevel is 100 by default, thus the plugins with startLevel bigger than 100 can not be started any more.
-+ initializedState: Optional, by default, it is 'active', means that the plugin will be started while Minima.start is called. You can define it to 'installed' if you do not want to be started with Minima.start.
-+ activator: Optional, if the Activator is not defined or is defined with file named Activator.js, the activator can be not defined. If you has Activator defined, you need to defined here, such as, "activator": "PluginActivator.js".
-+ stoppable: Optional, means the plugin can be stopped or not. By default, it is true.
++ startLevel: Optional, by default, it is 50. The startLevel is used to control the starting sequence of plugin. The smaller startLevel, the first to be started. Note that, the frameworkStartLevel is 100 by default, thus the plugins with startLevel bigger than 100 can not be started any more.
++ initializedState: Optional, by default, it is 'active', means that the plugin will be started while Minima.start is called. You can define it to 'installed' if you do not want start the plugin with Minima.start.
++ activator: Optional, if the Activator is not defined or is defined with file named Activator.js, you need not to specify the activator attribute. If you has Activator defined and the file name is not Activator.js, you need to define the activator attribute, such as, "activator": "PluginActivator.js".
++ stoppable: Optional. It means whether the plugin can be stopped or not. By default, it is true, means that the plugin can be stopped.
 
-The dependencies attribute is to describe the dependent plugins of current plugin. It is Optional. when the dependencies is not defined, it means there is not any dependent plugins. The dependencies attribute is an Array and each dependency contains the id and version attribute. The version attribute is Optional, and use "1.0.0" by default. The id is the dependent plugin id, the version is the ***minimize*** version of the dependent plugin. Below is the typical usage.
+The dependencies attribute is to describe the dependent plugins of current plugin. It is Optional. when the dependencies is not defined, it means there is not any dependent plugins. The dependencies attribute is an Array and each dependency contains the id and version attribute. The version attribute is Optional, and use "1.0.0" by default. The id is the dependent plugin id, the version is the ***minimize*** version of the dependent plugin. Below is the typical usage. It means current plugin depends on another plugin with id 'demoPlguin' and the version of dependent plugin 'demoPlugin' must be bigger than or equal '1.0.0'.
 
 ```json
 [{
@@ -321,9 +321,9 @@ The dependencies attribute is to describe the dependent plugins of current plugi
 ```
 
 The services attribute of plugin.json is described as below.
-+ services: Optional. The minimajs allows you to register a service by plugin.json or the addService method of PluginContext/Minima.instance. The service defined in the plugin.json will be registered to the framework while starting the plugin.
++ services: Optional. The minimajs framework allows you to register a service by plugin.json or the addService method of PluginContext/Minima.instance. The service defined in the plugin.json will be registered to the framework while starting the plugin.
 
-The services is a array definition. Each service element contains name, service and properties attributes. The name is the unique service name, used to find the service instance. The service attribute defines the service JS file path relative to the plugin directory. The properties attribute is used to filter the target service. Below is the typical usage of services attribute.
+The services is an array definition. Each service element contains name, service and properties attributes. The name is the unique service name, used to find the service instance. The service attribute defines the service JS file path relative to the plugin directory. The properties attribute is used to filter the target service. Below is the typical usage of services attribute.
 
 ```json
 [{  
@@ -335,7 +335,7 @@ The services is a array definition. Each service element contains name, service 
 }]
 ```
 
-The extensions attribute of plugin.json is to defined the extensions defined by current plugin, and it is Optional. The extension feature provides a ExtensionPoint-Extension extensibility model of plugin framework. The plugin which can be extended by others will defined a named ExtensionPoint, and it will receive the extension data registered by other plugin. The plugin which extends the functionalities of another will define the extensions attribute in the plugin.json. Each extension definition contains id and data attributes. The id is the unique ExtensionPoint ID, the data is the extension content which will register to the ExtensionPoint and can be got by getExtensions method of Minima.Instance or PluginContext.getExtensions.
+The extensions attribute of plugin.json is to defined the extensions defined by current plugin, and it is Optional. The extension feature provides a ExtensionPoint-Extension extensibility model of plugin framework. The plugin which can be extended by others will defined a named ExtensionPoint, and it will receive the extension data registered by other plugin. The plugin which extends the functionalities of another will define the extensions attribute in the plugin.json. Each extension definition contains id and data attributes. The id is the unique ExtensionPoint ID, the data is the extension content which will register to the ExtensionPoint and can be got by Minima.Instance.getExtensions(id) or PluginContext.getExtensions(id) function.
 
 ```json
 [{
@@ -357,15 +357,15 @@ The extensions attribute of plugin.json is to defined the extensions defined by 
 }]
 ```
 
-The data attribute is any value, which is determined by the plugin which exposes the ExtensionPoint. The data attribute can be string, array, object, and so on.
+The data attribute can be any value, and depends on the plugin which exposes the ExtensionPoint. The data attribute can be string, array, object, and so on.
 
 #### 3 Activator
 
-The Activator is to define the entry and the exit. Each Activator contains two functions named start and stop. When the plugin is starting, the start function will be called. And the stop function is called when the plugin is stopped.
+The Activator is to define the entry and the exit of a plugin. Each Activator contains two functions named start(context) and stop(context). When the plugin is starting, the start function will be called. And the stop function is called when the plugin is stopped.
 
 The Activator is Optional. The plugin can be defined without a Activator. Thus it will start or stop directly. Additionally, the default Activator file is Activator.js in the plugin directory. If you will define a Activator with another file name, you need to specify the activator attribute of plugin.json.
 
-The Activator is defined with below style.
+The demo Activator is shown as below.
 
 ```js
 export default class Activator {
@@ -386,21 +386,21 @@ export default class Activator {
 
 There is a parameter named context of start and stop function in each Activator. The context is a PluginContext instance. You can use the PluginContext to access the framework functionalities, such as, to add or get service, get extensions, get plugins, install another plugin, and so on.
 
-The Activator is used to initialize the resources of current plugin, and release them after stopping. Any exception occurs in the start function will block the the starting of a plugin, the plugin start will keep in 'resolved' state. But the plugin will still be stopped if an exception occurs in the stop method.
+The Activator is used to initialize the resources of current plugin, and release them after stopping. Any exception occurs in the start function will block the the starting of a plugin, the plugin state will keep in 'resolved' state. But the plugin will still be stopped normally even if an exception occurs in the stop method.
 
 #### 4 PluginContext Class
 
 The PluginContext is a common class when defining a plugin. It provides the below functionalities.
-+ Current Plugin: to get current Plugin instance. The usage Plugin instance will be described in follow section.
++ Current Plugin: to get current Plugin instance. The usage of Plugin instance will be described in follow section.
 + Service: to add, get services from plugin framework.
 + Extension: to get the extensions from plugin framework.
-+ Plugin lifecycle: to install a plugin to plugin framework dynamically.
++ Plugin lifecycle: to install a plugin dynamically.
 + Event: to listen the service changed event, extension changed event, plugin lifecycle changed event, framework event.
 + You can get more details from [api references](https://github.com/lorry2018/minimajs/blob/master/docs/PluginContext.html).
 
 #### 5 Plugin Class
 
-The Plugin is a another common class when defining a plugin. It provides the below functionalities.
+The Plugin is another common class when defining a plugin. It provides the below functionalities.
 + Current Plugin: to get the information of current plugin, such as plugin directory, id, name, version, and so on.
 + Lifecycle: to start, stop, uninstall current plugin.
 + Class Loading: to load a JS module from current plugin.
@@ -408,25 +408,25 @@ The Plugin is a another common class when defining a plugin. It provides the bel
 
 #### 6 Lifecycle
 
-The minimajs framework supports to install, start, stop and uninstall in the runtime. Each plugin has installed, resolved, starting, active, stopping, uninstalled state definitions.
+The minimajs framework supports to install, start, stop and uninstall plugins in the runtime. Each plugin has installed, resolved, starting, active, stopping, uninstalled lifecycle state definitions.
 
-When the framework install a plugin, it will read the plugin.json file, validate the plugin.json, and create the Plugin instance. If the Plugin is installed, its state is 'installed'.
+When the framework install a plugin, it will read and parse the plugin.json file, validate the plugin.json, and create the Plugin instance. If the Plugin is installed, its state is in the 'installed' state.
 
-After installing a plugin, the framework will resolve its dependencies immediately. It means, the plugin will find all dependent plugins. If the dependent plugin does not exist or can not be resolved, the plugin can not be resolved successfully, thus its state still be 'installed', otherwise, its state is 'resolved'.Once the plugin is in the 'resolved' state, it means the plugin is ready to be started.
+After installing a plugin, the framework will resolve its dependencies immediately. It means, the plugin will try to find all dependent plugins. If the dependent plugin does not exist or can not be resolved, the plugin can not be resolved successfully, thus its state still be 'installed', otherwise, its state is change to 'resolved'. Once the plugin is in the 'resolved' state, it means the plugin is ready to be started.
 
 When the minimajs framework starting a plugin, it will follow below activities sequence.
 + If current plugin is active, just return.
 + If current plugin is uninstalled, throw exception.
 + If the startLevel of plugin is bigger than frameworkStartLevel, throw exception.
 + If current plugin can not be resolved, throw exception.
-+ Change the start to 'starting'.
++ Change the state to 'starting'.
 + Create the PluginContext instance.
 + Load the activator file, if not defined, go to next. Otherwise, load the Activator JS module, create instance and call the start(context) function. Any exception occurs will stop the plugin starting.
 + Register services of current plugin defined in the plugin.json to the framework.
 + Register extensions of current plugin defined in the plugin.json to the framework.
 + Change the state to 'active'.
 + Any exception occurs in the starting, the state will change to 'resolved'.
-+ Any state state of current plugin will fire the plugin lifecycle event.
++ Any state change of current plugin will fire the plugin lifecycle event.
 
 When the minimajs framework stopping a plugin, it will follow below activities sequence.
 + If current plugin is uninstalled, throw exception.
@@ -436,11 +436,11 @@ When the minimajs framework stopping a plugin, it will follow below activities s
 + Unregister the services defined in the plugin.json of current plugin.
 + Unregister the extensions defined in the plugin.json of current plugin.
 + Change the state to 'resolved'.
-+ Any state state of current plugin will fire the plugin lifecycle event.
++ Any state change of current plugin will fire the plugin lifecycle event.
 
 When the minimajs framework uninstall a plugin, it will follow below activities sequence.
 + Stop it and then change the state to 'uninstalled'.
-+ You can do any lifecycle action on a uninstalled plugin.
++ You can not do any lifecycle action on a uninstalled plugin.
 
 ### How to create a service
 
@@ -448,7 +448,7 @@ The service in the minimajs framework is used to implement the interactive betwe
 
 #### 1 Define service
 
-The service provides some common functionalities, such as defining a LogService class as below.
+The service provides some common functionalities. Below is a demo LogService definition.
 
 ```js
 export default class LogService {
@@ -462,9 +462,9 @@ export default class LogService {
 
 #### 2 Register service
 
-We can register a service in the plugin.json or PluginContext instance of start function in the Activator.
+We can register a service in the plugin.json or use PluginContext instance of start function in the Activator.
 
-You can specify the name, service JS file path relative to the plugin directory, and service properties. Note that the service properties is used to filter the services register by the same service name.
+With plugin.json, you can specify the name, service JS file path relative to the plugin directory, and service properties. Note that the service properties is used to filter the services registered by the same service name.
 
 ```json
 {
@@ -481,7 +481,7 @@ You can specify the name, service JS file path relative to the plugin directory,
 }
 ```
 
-Also we can register the service in the Activator.
+Also we can register the service in the Activator by using PluginContext.addService.
 
 ```js
 export default class Activator {
@@ -519,8 +519,12 @@ export default class Activator {
         let logService = context.getDefaultService('logService');
         // or let logService = context.getDefaultService('logService', {vendor : 'lorry'});
 
-        let logServices = context.getServices('logService');
+        // let logServices = context.getServices('logService');
         // or let logServices = context.getServices('logService', {vendor : 'lorry'});
+
+        if (logService) {
+            logService.log('LogService is found.');
+        }
     }
 
     stop(context) {
@@ -546,7 +550,7 @@ export default class Activator {
 
     start(context) {
         Activator.logService = context.getDefaultService('logService');
-        context.addServiceChangedListener
+        context.addServiceChangedListener(serviceChangedListener);
     }
 
     serviceChangedListener(name, action) {
@@ -567,7 +571,7 @@ The extension feature provides the functionality that a plugin can extend the fu
 
 #### 1 Define extensionPoint and handle it
 
-The extension which will be extended in the runtime, need to define a extensionPoint id. The extensionPoint is unique. And the plugin need to handle the extensions registered by other plugins.
+The extensible plugin which can be extended in the runtime, should define a ExtensionPoint and handle its extensions. The ExtensionPoint is unique.
 
 ```js
 import { Minima, Extension, ExtensionAction, PluginContext, log } from 'minimajs';
@@ -593,6 +597,7 @@ export default class Activator {
     }
 
     handleCommandExtensions() {
+        // Get the extensions for ExtensionPoint named 'commands'.
         let extensions = Minima.instance.getExtensions('commands');
         for (let extension of extensions) {
             let Command = extension.owner.loadClass(extension.data.command).default;
@@ -615,7 +620,7 @@ export default class Activator {
 
 The plugin will extend the functionalities of another plugin, it will define the extensions attribute of the plugin.json. The extension and the content of it need to follow the rules of ExtensionPoint.
 
-Below is the extensions attribute of plugin.json.
+Below is the extensions attribute of plugin.json. It means that the ExtensionPoint defined with id 'commands' and the extension content is an object with name and command attribute.
 
 ```json
 {
@@ -705,7 +710,7 @@ export default class Activator {
 
 ### How to use the log to find something wrong
 
-Keep in mind, you can get the details information from log.log file in the root directory of the runtime.
+Keep in mind, you can use the log.log file in the root directory to get the details information of the minimajs framework to resolve problems in the runtime.
 
 ## About
 
