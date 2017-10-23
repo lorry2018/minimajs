@@ -15,7 +15,7 @@ The architecture of minimajs is shown as below.
  
 There are three features:
 + Dynamic plugin: define the plugin structure, plugin config, plugin dependencies, plugin lifecycle, plugin class loading;
-+ Service: the communication between plugins with SOA;
++ Service: the interactive between plugins with decoupled service;
 + Extension: the extension supporting for plugin.
 
 ## Prerequisite
@@ -40,6 +40,8 @@ $ npm install --save minimajs
 The Minima is a plugin framework container. We need to create a plugin framework instance and start it.
 
 ![image](https://github.com/lorry2018/minimajs/blob/master/docs/imgs/index.png)
+
+Below is the code to create a Minima instance and start it.
 
 ```js
 import { Minima } from 'minimajs';
@@ -195,7 +197,7 @@ let minima = new Minima(path.join(__dirname, 'plugins'));
 minima.start();
 ```
 
-The Minima instance will find all plugins below the 'plugins' directory and load them to the framework. Then the minimajs framework will resolve the dependencies between the plugins. After calling minima.start, the minimajs framework will start the resolved plugins followed by the startLevel of plugin. The smallest startLevel, the first to be started.
+The Minima instance will find all plugins below the 'plugins' directory and load them to the framework. Then the minimajs framework will resolve the dependencies between the plugins. After calling minima.start, the minimajs framework will start the resolved plugins followed by the startLevel of plugin. The smallest startLevel, the first to be started. The dependencies affects the sequence of plugin starting. When starting a plugin, the framework will start its dependencies first even if the startLevel of dependencies is bigger than it.
 
 #### 2 Register global service
 
@@ -222,7 +224,7 @@ export default class Activator {
 ```
 
 #### 3 Singleton Minima.instance
-You can use the Minima.instance to access Minima framework in the each plugin. The Minima framework provides the features as below:
+You can use the Minima.instance to access the framework in the each plugin. The Minima framework provides the features as below:
 + Service: Add/Remove/Get
 + Plugin: Get
 + Extension: Get
