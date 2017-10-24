@@ -6,6 +6,9 @@
         "example/node_modules/": true,
         "example/build/": true,
         "example/*.log": true,
+        "example-webapi/node_modules/": true,
+        "example-webapi/build/": true,
+        "example-webapi/*.log": true,
         "docs": false
     },
     "git.ignoreLimitWarning": true

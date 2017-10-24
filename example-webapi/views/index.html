@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html lang="en" class="ie6 ielt7 ielt8 ielt9"><![endif]-->
+<!--[if IE 7 ]><html lang="en" class="ie7 ielt8 ielt9"><![endif]-->
+<!--[if IE 8 ]><html lang="en" class="ie8 ielt9"><![endif]-->
+<!--[if IE 9 ]><html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <title>WebAPI Plugin Framework</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="/static/css/site.css" rel="stylesheet">
+    <link type="image/x-icon" href="/static/favicon.png" rel="shortcut icon" />
+    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="javascript:void(0)">Minima-WebAPI</a>
+                    <div class="nav-collapse">
+                        <ul class="nav">
+                            {{each menus}} {{if $value.menus.length == 0}}
+                            <li>
+                                <a href="javascript:void(0)" menu="{{$value.id}}" onclick="onNavClick(this)">{{$value.text}}</a>
+                            </li>
+                            {{else}}
+                            <li class="dropdown">
+                                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">{{$value.text}} <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    {{each $value.menus}}
+                                    <li>
+                                        <a href="javascript:void(0)" menu="{{$value.id}}" onclick="onNavClick(this)">{{$value.text}}</a>
+                                    </li>
+                                    {{/each}}
+                                </ul>
+                            </li>
+                            {{/if}} {{/each}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="contentView" class="row">
+            <div class="span12">
+                <h1>
+                    Dashboard
+                </h1>
+                <div class="hero-unit">
+                    <h1>
+                        Welcome!
+                    </h1>
+                    <p>
+                        Welcome to the WebAPI framework based minimajs framework.
+                    </p>
+                </div>
+                <div class="well summary">
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)"><span class="count">3</span> Plugins</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><span class="count">27</span> WebAPIs</a>
+                        </li>
+                    </ul>
+                </div>
+                <h2>
+                    WebAPIs
+                </h2>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                Project
+                            </th>
+                            <th>
+                                Client
+                            </th>
+                            <th>
+                                Type
+                            </th>
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                View
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Nike.com Redesign
+                            </td>
+                            <td>
+                                Monsters Inc
+                            </td>
+                            <td>
+                                New Task
+                            </td>
+                            <td>
+                                4 days ago
+                            </td>
+                            <td>
+                                <a href="#" class="view-link">View</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Nike.com Redesign
+                            </td>
+                            <td>
+                                Monsters Inc
+                            </td>
+                            <td>
+                                New Message
+                            </td>
+                            <td>
+                                5 days ago
+                            </td>
+                            <td>
+                                <a href="#" class="view-link">View</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Nike.com Redesign
+                            </td>
+                            <td>
+                                Monsters Inc
+                            </td>
+                            <td>
+                                New Project
+                            </td>
+                            <td>
+                                5 days ago
+                            </td>
+                            <td>
+                                <a href="#" class="view-link">View</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Twitter Server Consulting
+                            </td>
+                            <td>
+                                Bad Robot
+                            </td>
+                            <td>
+                                New Task
+                            </td>
+                            <td>
+                                6 days ago
+                            </td>
+                            <td>
+                                <a href="#" class="view-link">View</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Childrens Book Illustration
+                            </td>
+                            <td>
+                                Evil Genius
+                            </td>
+                            <td>
+                                New Message
+                            </td>
+                            <td>
+                                9 days ago
+                            </td>
+                            <td>
+                                <a href="#" class="view-link">View</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Twitter Server Consulting
+                            </td>
+                            <td>
+                                Bad Robot
+                            </td>
+                            <td>
+                                New Task
+                            </td>
+                            <td>
+                                16 days ago
+                            </td>
+                            <td>
+                                <a href="#" class="view-link">View</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Twitter Server Consulting
+                            </td>
+                            <td>
+                                Bad Robot
+                            </td>
+                            <td>
+                                New Project
+                            </td>
+                            <td>
+                                16 days ago
+                            </td>
+                            <td>
+                                <a href="#" class="view-link">View</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Twitter Server Proposal
+                            </td>
+                            <td>
+                                Bad Robot
+                            </td>
+                            <td>
+                                Completed Project
+                            </td>
+                            <td>
+                                20 days ago
+                            </td>
+                            <td>
+                                <a href="#" class="view-link">View</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/site.js"></script>
+
+    <script lang="text/javascript">
+        function onNavClick(sender) {
+            $.ajax({
+                type: "GET",
+                url: '/pluginView?id=' + sender.getAttribute('menu'),
+                success: function(data) {
+                    $('#contentView').html(data);
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

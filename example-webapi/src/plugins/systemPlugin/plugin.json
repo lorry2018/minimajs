@@ -1,0 +1,23 @@
+{
+    "id": "systemPlugin",
+    "name": "System Plugin",
+    "startLevel": 3,
+    "version": "1.0.0",
+    "stoppable": false,
+    "extensions": [{
+        "id": "minima.menus",
+        "data": [{
+            "text": "System",
+            "order": "6",
+            "menus": [{
+                "text": "Plugins",
+                "order": 1,
+                "url": "renders/PluginsViewRender.js"
+            }, {
+                "text": "Logs",
+                "order": 2,
+                "url": "renders/LogsViewRender.js"
+            }]
+        }]
+    }]
+}

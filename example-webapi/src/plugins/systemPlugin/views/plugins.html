@@ -1,0 +1,39 @@
+<div class="span12">
+    <h1>
+        Plugins
+    </h1>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Version</th>
+                <th class="text-center"><span>State</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{each plugins}}
+            <tr>
+                <td>
+                    {{$index + 1}}
+                </td>
+                <td>
+                    {{$value.id}}
+                </td>
+                <td>
+                    {{$value.name}}
+                </td>
+                <td>
+                    {{$value.version}}
+                </td>
+                <td class="text-center">
+                    {{if $value.state == 'active'}}
+                    <span class="label label-success">{{$value.state}}</span> {{else}}
+                    <span class="label label-primary">{{$value.state}}</span> {{/if}}
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
