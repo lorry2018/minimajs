@@ -1,6 +1,12 @@
 import { Request, Response } from 'express';
 import { Plugin } from 'minimajs';
 
+/**
+ * The handler template.
+ * 
+ * @export
+ * @class PluginRestServiceHandler
+ */
 export default class PluginRestServiceHandler {
     /**
      * Creates an instance of PluginRestServiceHandler.
@@ -13,7 +19,7 @@ export default class PluginRestServiceHandler {
     }
 
     /**
-     * Handle a REST request.
+     * Handle a REST request: http://locahost:3000/demoPlugin/demo/info
      * 
      * @param {Request} request 
      * @param {Response} response 

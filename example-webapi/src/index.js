@@ -6,6 +6,7 @@ import bodyParser from 'body-parser';
 import IndexRoute from './IndexRoute';
 import StaticRoute from './StaticRoute';
 import ErrorHandlingRoute from './ErrorHandlingRoute';
+import PluginRestServiceExtensionHandler from './PluginRestServiceExtensionHandler';
 
 const app = express();
 app.engine('html', require('express-art-template'));
@@ -22,6 +23,8 @@ app.use(cookieParser());
 let minima = new Minima(path.join(__dirname, 'plugins'));
 minima.addService('app', app);
 minima.start();
+
+new PluginRestServiceExtensionHandler(minima, app);
 
 new StaticRoute(minima, app);
 new IndexRoute(minima, app);

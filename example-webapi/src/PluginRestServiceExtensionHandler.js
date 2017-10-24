@@ -1,32 +1,42 @@
 import { Express, RequestHandler } from 'express';
-import { Plugin, Minima, Extension, ExtensionAction } from 'minimajs';
+import { Plugin, Minima, Extension, ExtensionAction, Assert } from 'minimajs';
 
-const webApiExtension = "minima.webapis";
+const webApiExtensionPoint = "minima.webapis";
 
 export default class PluginRestServiceExtensionHandler {
     /**
      * Creates an instance of PluginRestServiceExtensionHandler.
      * 
-     * @param {Express} app 
      * @param {Minima} minima
+     * @param {Express} app 
      * @memberof PluginRestServiceExtensionHandler
      */
-    constructor(app, minima) {
-        this.app = app;
+    constructor(minima, app) {
         this.minima = minima;
+        this.app = app;
 
-        this.register = this.register.bind(this);
-        this.unregister = this.unregister.bind(this);
+        /**
+         * @type {Map.<Plugin, Set.<PluginRequestHandler>>}
+         */
+        this.pluginsWebApiHandlers = new Map();
+
+        this.findHandler = this.findHandler.bind(this);
         this.handleWebApisExtensions = this.handleWebApisExtensions.bind(this);
+        this.webApiExtensionChanged = this.webApiExtensionChanged.bind(this);
+        this.addWebApiExtension = this.addWebApiExtension.bind(this);
+        this.removeWebApiExtension = this.removeWebApiExtension.bind(this);
 
         let self = this;
 
         self.handleWebApisExtensions();
-        minima.addExtensionChangedListener(webApiExtensionChanged);
+        minima.addExtensionChangedListener(this.webApiExtensionChanged);
     }
 
     handleWebApisExtensions() {
-
+        let extensions = this.minima.getExtensions(webApiExtensionPoint);
+        for (let extension of extensions) {
+            this.addWebApiExtension(extension);
+        }
     }
 
     /**
@@ -35,30 +45,141 @@ export default class PluginRestServiceExtensionHandler {
      * @memberof PluginRestServiceExtensionHandler
      */
     webApiExtensionChanged(extension, action) {
-
+        if (extension.id === webApiExtensionPoint) {
+            if (action === ExtensionAction.ADDED) {
+                this.addWebApiExtension(extension);
+            } else {
+                this.removeWebApiExtension(extension);
+            }
+        }
     }
 
     /**
-     * Register a REST service.
-     * 
-     * @param {Plugin} plugin
-     * @param {string} servicePath 
-     * @param {RequestHandler} handler 
-     * @param {string} method 'get', 'post', 'put', 'delete'
+     * @param {Extension} extension 
      * @memberof PluginRestServiceExtensionHandler
      */
-    register(plugin, servicePath, handler, method) {
-        this.app[method](`/${plugin.id}/${servicePath}`, handler);
+    addWebApiExtension(extension) {
+        let plugin = extension.owner;
+        let servicePath = extension.data.path;
+        let method = extension.data.method;
+        if (!method) {
+            method = PluginRequestHandler.DEFAULT;
+        }
+
+        if (this.findHandler(plugin, servicePath, method)) {
+            throw new Error(`Handle webapis extension error since duplicated service path ${servicePath}, ${method} in plugin ${plugin.id}.`);
+        }
+
+        let Handler = extension.owner.loadClass(extension.data.handler).default;
+        let handlerInstance = new Handler(plugin);
+
+        let pluginRequestHandler = new PluginRequestHandler(this.app, plugin, servicePath, handlerInstance, method);
+        if (!this.pluginsWebApiHandlers.has(plugin)) {
+            this.pluginsWebApiHandlers.set(plugin, new Set());
+        }
+        this.pluginsWebApiHandlers.get(plugin).add(pluginRequestHandler);
+        pluginRequestHandler.register();
+    }
+
+    findHandler(plugin, servicePath, method) {
+        let handlers = this.pluginsWebApiHandlers.get(plugin);
+        if (!handlers) {
+            return null;
+        }
+
+        for (let handler of handlers) {
+            if (handler.servicePath === servicePath && handler.method === method) {
+                return handler;
+            }
+        }
+
+        return null;
     }
 
     /**
-     * Unregister a REST service.
-     * 
-     * @param {Plugin} plugin
-     * @param {string} servicePath 
+     * @param {Extension} extension 
      * @memberof PluginRestServiceExtensionHandler
      */
-    unregister(plugin, servicePath, handler) {
-        this.app.delete(`/${plugin.id}/${servicePath}`, handler);
+    removeWebApiExtension(extension) {
+        let plugin = extension.owner;
+        let servicePath = extension.data.path;
+        let method = extension.data.method;
+
+        if (!method) {
+            method = PluginRequestHandler.DEFAULT;
+        }
+
+        if (!this.pluginsWebApiHandlers.has(plugin)) {
+            return;
+        }
+
+        let toBeRemovedHandler = this.findHandler(plugin, servicePath, method);
+        if (!toBeRemovedHandler) {
+            return null;
+        }
+
+        toBeRemovedHandler.unregister();
+        handlers.delete(toBeRemovedHandler);
+    }
+}
+
+class PluginRequestHandler {
+    static DEFAULT = "get";
+
+    static GET = "get";
+    static POST = "post";
+    static PUT = "put";
+    static DELETE = "delete";
+    /**
+     * Creates an instance of PluginRequestHandler.
+     * 
+     * @param {Express} app
+     * @param {Plugin} plugin 
+     * @param {string} servicePath 
+     * @param {PluginRestServiceHandler} handler 
+     * @param {string} method 
+     * @memberof PluginRequestHandler
+     */
+    constructor(app, plugin, servicePath, handler, method) {
+        Assert.notNull("app", app);
+        Assert.notNull("plugin", plugin);
+        Assert.notEmpty("servicePath", servicePath);
+        Assert.notNull("handler", handler);
+
+        if (!method) {
+            method = PluginRequestHandler.DEFAULT;
+        }
+
+        this.app = app;
+        this.plugin = plugin;
+        this.servicePath = servicePath;
+        this.handler = handler;
+        this.method = method.toLowerCase();
+
+        if (this.method !== PluginRequestHandler.GET &&
+            this.method !== PluginRequestHandler.POST &&
+            this.method !== PluginRequestHandler.PUT &&
+            this.method !== PluginRequestHandler.DELETE) {
+            throw new Error("The method must be get, post, put or delete.");
+        }
+
+        this.register = this.register.bind(this);
+        this.unregister = this.unregister.bind(this);
+    }
+
+    register() {
+        if (this.method === PluginRequestHandler.GET) {
+            this.app.get(`/${this.plugin.id}/${this.servicePath}`, this.handler.handle);
+        } else if (this.method === PluginRequestHandler.POST) {
+            this.app.post(`/${this.plugin.id}/${this.servicePath}`, this.handler.handle);
+        } else if (this.method === PluginRequestHandler.PUT) {
+            this.app.put(`/${this.plugin.id}/${this.servicePath}`, this.handler.handle);
+        } else if (this.method === PluginRequestHandler.DELETE) {
+            this.app.delete(`/${this.plugin.id}/${this.servicePath}`, this.handler.handle);
+        }
+    }
+
+    unregister() {
+        // TODO: Can not disable the route.
     }
 }
