@@ -23,7 +23,7 @@
         <div class="navbar">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="javascript:void(0)">Minima-WebAPI</a>
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="/">Minima-WebAPI</a>
                     <div class="nav-collapse">
                         <ul class="nav">
                             {{each menus}} {{if $value.menus.length == 0}}
@@ -64,10 +64,10 @@
                 <div class="well summary">
                     <ul>
                         <li>
-                            <a href="javascript:void(0)"><span class="count">3</span> Plugins</a>
+                            <a href="javascript:void(0)"><span class="count">{{pluginsCount}}</span> Plugins</a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)"><span class="count">27</span> WebAPIs</a>
+                            <a href="javascript:void(0)"><span class="count">{{webApisCount}}</span> WebAPIs</a>
                         </li>
                     </ul>
                 </div>
@@ -78,159 +78,48 @@
                     <thead>
                         <tr>
                             <th>
-                                Project
+                                Plugin Id
                             </th>
                             <th>
-                                Client
+                                Plugin Name
                             </th>
                             <th>
-                                Type
+                                Plugin Version
                             </th>
                             <th>
-                                Date
+                                Path
                             </th>
                             <th>
-                                View
+                                Method
+                            </th>
+                            <th>
+                                Handler
                             </th>
                         </tr>
                     </thead>
                     <tbody>
+                        {{each webapis}}
                         <tr>
                             <td>
-                                Nike.com Redesign
+                                {{$value.pluginId}}
                             </td>
                             <td>
-                                Monsters Inc
+                                {{$value.pluginName}}
                             </td>
                             <td>
-                                New Task
+                                {{$value.pluginVersion}}
                             </td>
                             <td>
-                                4 days ago
+                                {{$value.path}}
                             </td>
                             <td>
-                                <a href="#" class="view-link">View</a>
+                                {{$value.method}}
+                            </td>
+                            <td>
+                                {{$value.handler}}
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                Nike.com Redesign
-                            </td>
-                            <td>
-                                Monsters Inc
-                            </td>
-                            <td>
-                                New Message
-                            </td>
-                            <td>
-                                5 days ago
-                            </td>
-                            <td>
-                                <a href="#" class="view-link">View</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Nike.com Redesign
-                            </td>
-                            <td>
-                                Monsters Inc
-                            </td>
-                            <td>
-                                New Project
-                            </td>
-                            <td>
-                                5 days ago
-                            </td>
-                            <td>
-                                <a href="#" class="view-link">View</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Twitter Server Consulting
-                            </td>
-                            <td>
-                                Bad Robot
-                            </td>
-                            <td>
-                                New Task
-                            </td>
-                            <td>
-                                6 days ago
-                            </td>
-                            <td>
-                                <a href="#" class="view-link">View</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Childrens Book Illustration
-                            </td>
-                            <td>
-                                Evil Genius
-                            </td>
-                            <td>
-                                New Message
-                            </td>
-                            <td>
-                                9 days ago
-                            </td>
-                            <td>
-                                <a href="#" class="view-link">View</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Twitter Server Consulting
-                            </td>
-                            <td>
-                                Bad Robot
-                            </td>
-                            <td>
-                                New Task
-                            </td>
-                            <td>
-                                16 days ago
-                            </td>
-                            <td>
-                                <a href="#" class="view-link">View</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Twitter Server Consulting
-                            </td>
-                            <td>
-                                Bad Robot
-                            </td>
-                            <td>
-                                New Project
-                            </td>
-                            <td>
-                                16 days ago
-                            </td>
-                            <td>
-                                <a href="#" class="view-link">View</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Twitter Server Proposal
-                            </td>
-                            <td>
-                                Bad Robot
-                            </td>
-                            <td>
-                                Completed Project
-                            </td>
-                            <td>
-                                20 days ago
-                            </td>
-                            <td>
-                                <a href="#" class="view-link">View</a>
-                            </td>
-                        </tr>
+                        {{/each}}
                     </tbody>
                 </table>
             </div>

@@ -104,7 +104,20 @@ export default class IndexRoute {
         let self = this;
         let route = new express.Router();
         route.get('/', (req, res) => {
-            res.render('index', { menus: self.menus });
+            let extensionPoint = "minima.webapis";
+            let extensions = self.minima.getExtensions(extensionPoint);
+            let webapis = [];
+            for (let extension of extensions) {
+                webapis.push({
+                    pluginId: extension.owner.id,
+                    pluginName: extension.owner.name,
+                    pluginVersion: extension.owner.version.versionString,
+                    path: `/${extension.owner.id}/${extension.data.path}`,
+                    method: extension.data.method,
+                    handler: extension.data.handler
+                });
+            }
+            res.render('index', { menus: self.menus, pluginsCount: self.minima.getPlugins().size, webApisCount: extensions.size, webapis: webapis });
         });
         return route;
     }

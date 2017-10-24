@@ -1,7 +1,6 @@
 import path from 'path';
 import { Express } from 'express';
 import { PluginContext } from 'minimajs';
-import PluginService from './services/PluginService';
 
 export default class Activator {
     /**
@@ -12,14 +11,7 @@ export default class Activator {
      * @memberof Activator
      */
     static context = null;
-    /**
-     * Express 实例
-     * 
-     * @type {Express}
-     * @static
-     * @memberof Activator
-     */
-    static app = null;
+
     constructor() {
         this.start = this.start.bind(this);
         this.stop = this.stop.bind(this);
@@ -33,10 +25,6 @@ export default class Activator {
      */
     start(context) {
         Activator.context = context;
-        Activator.app = context.getDefaultService('app');
-
-        this.pluginService = new PluginService(context.plugin, Activator.app);
-        this.pluginService.register();
     }
 
     /**
@@ -46,8 +34,6 @@ export default class Activator {
      * @memberof Activator
      */
     stop(context) {
-        this.pluginService.unregister();
         Activator.context = null;
-        Activator.app = null;
     }
 }

@@ -24,7 +24,7 @@ let minima = new Minima(path.join(__dirname, 'plugins'));
 minima.addService('app', app);
 minima.start();
 
-new PluginRestServiceExtensionHandler(minima, app);
+minima.addService("pluginRestServiceExtensions", new PluginRestServiceExtensionHandler(minima, app));
 
 new StaticRoute(minima, app);
 new IndexRoute(minima, app);

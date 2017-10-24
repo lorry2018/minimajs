@@ -5,17 +5,19 @@ import { Plugin } from 'minimajs';
  * The handler template.
  * 
  * @export
- * @class PluginRestServiceHandler
+ * @class DemoRestHandler
  */
-export default class PluginRestServiceHandler {
+export default class DemoRestHandler {
     /**
-     * Creates an instance of PluginRestServiceHandler.
+     * Creates an instance of DemoRestHandler.
      * 
      * @param {Plugin} plugin 
-     * @memberof PluginRestServiceHandler
+     * @memberof DemoRestHandler
      */
     constructor(plugin) {
         this.plugin = plugin;
+
+        this.handle = this.handle.bind(this);
     }
 
     /**
@@ -23,7 +25,7 @@ export default class PluginRestServiceHandler {
      * 
      * @param {Request} request 
      * @param {Response} response 
-     * @memberof PluginRestServiceHandler
+     * @memberof DemoRestHandler
      */
     handle(request, response) {
         response.json({ "demo": "Demo Rest Handler." });

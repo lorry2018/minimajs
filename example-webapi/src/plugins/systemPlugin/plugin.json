@@ -19,5 +19,12 @@
                 "url": "renders/LogsViewRender.js"
             }]
         }]
+    }, {
+        "id": "minima.webapis",
+        "data": {
+            "path": "plugins",
+            "method": "get",
+            "handler": "handlers/PluginsRestHandler.js"
+        }
     }]
 }
