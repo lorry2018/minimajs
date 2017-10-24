@@ -78,6 +78,9 @@
                     <thead>
                         <tr>
                             <th>
+                                #
+                            </th>
+                            <th>
                                 Plugin Id
                             </th>
                             <th>
@@ -100,6 +103,9 @@
                     <tbody>
                         {{each webapis}}
                         <tr>
+                            <td>
+                                {{$value.index}}
+                            </td>
                             <td>
                                 {{$value.pluginId}}
                             </td>

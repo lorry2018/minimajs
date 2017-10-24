@@ -107,8 +107,10 @@ export default class IndexRoute {
             let extensionPoint = "minima.webapis";
             let extensions = self.minima.getExtensions(extensionPoint);
             let webapis = [];
+            let index = 1;
             for (let extension of extensions) {
                 webapis.push({
+                    index: index,
                     pluginId: extension.owner.id,
                     pluginName: extension.owner.name,
                     pluginVersion: extension.owner.version.versionString,
@@ -116,6 +118,7 @@ export default class IndexRoute {
                     method: extension.data.method,
                     handler: extension.data.handler
                 });
+                index++;
             }
             res.render('index', { menus: self.menus, pluginsCount: self.minima.getPlugins().size, webApisCount: extensions.size, webapis: webapis });
         });
