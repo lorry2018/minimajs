@@ -9,5 +9,12 @@
             "method": "get",
             "handler": "handlers/DemoRestHandler.js"
         }
+    }, {
+        "id": "minima.webapis",
+        "data": {
+            "path": "version",
+            "method": "get",
+            "handler": "handlers/VersionRestHandler.js"
+        }
     }]
 }
