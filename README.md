@@ -444,6 +444,85 @@ When the minimajs framework uninstall a plugin, it will follow below activities 
 + Stop it and then change the state to 'uninstalled'.
 + You can not do any lifecycle action on a uninstalled plugin.
 
+7 Class Loading or Module loading
+
+The minimajs framework allows one plugin load a JS Class(Or Module) from another. This means there is dependency on these two plugins.
+
+If you want to load a class from another plugin, you need to declare the dependency on it as below.
+
+```json
+// 1 plugin.config
+{
+    "id": "demoPlugin2",
+    "version": "1.0.0",
+    "dependencies": [{
+        "id": "demoPlugin",
+        "version": "1.0.0"
+    }]
+}
+```
+
+Thus, we can use the PluginContext or Minima.instance to get the 'demoPlugin'.
+
+```js
+export default class Activator {
+    constructor() {
+        this.start = this.start.bind(this);
+        this.stop = this.stop.bind(this);
+    }
+
+    start(context) {
+        let demoPlugin = context.getPlugin('demoPlugin');
+        // Or let demoPlugin = Minima.instance.getPlugin('demoPlugin');
+        if (demoPlugin) {
+            let Assert = demoPlugin.loadClass('utilities/Assert.js').default;
+            // ...
+            Assert.notNull('some instance', someInstance);
+        }
+    }
+
+    stop(context) {}
+}
+```
+
+Usually, the extension will use this feature to load some extension class from plugin. Below is an Extension definition.
+
+```json
+{
+    "id": "demoPlugin2",
+    "version": "1.0.0",
+    "dependencies": [{
+        "id": "demoPlugin",
+        "version": "1.0.0"
+    }],
+    "extensions": [{
+        "id": "commands",
+        "data": {
+            "name": "echo",
+            "command": "commands/EchoCommand.js"
+        }
+    }]
+}
+```
+
+The extension means that the extension plugin will register the command to the extensible plugin. The extensible plugin will handle the extension with loading class from extension plugin as below.
+
+```js
+handleCommandExtensions() {
+    let extensions = Minima.instance.getExtensions('commands');
+    for (let extension of extensions) {
+        // The extensible plugin loads a class from extension plugin.
+        let Command = extension.owner.loadClass(extension.data.command).default;
+        let command = new Command();
+        command.run();
+    }
+
+    log.logger.info(`The commands extension size is ${extensions.size}.`);
+}
+```
+
+***Note that*** we do not need to declare a dependency between the extensible plugin and the extension plugin since the extension is dynamically.
+
 ### How to create a service
 
 The service in the minimajs framework is used to implement the interactive between the plugins. One plugin register a plugin, thus another plugin can consume the service. The service can be register, unregister in the runtime.
