@@ -19,7 +19,7 @@ export default class PluginService {
 
     register() {
         this.app.post(`/${this.plugin.id}/plugin/start`, (request, response) => {
-            let pluginIds = this.app.jsonBody(request).ids;
+            let pluginIds = this.app.ids;
             for (let pluginId of pluginIds) {
                 let plugin = this.plugin.context.getPlugin(pluginId);
                 try {
@@ -33,7 +33,7 @@ export default class PluginService {
         });
 
         this.app.post(`/${this.plugin.id}/plugin/stop`, (request, response) => {
-            let pluginIds = this.app.jsonBody(request).ids;
+            let pluginIds = this.app.ids;
             for (let pluginId of pluginIds) {
                 let plugin = this.plugin.context.getPlugin(pluginId);
                 if (plugin.pluginConfiguration.stoppable) {

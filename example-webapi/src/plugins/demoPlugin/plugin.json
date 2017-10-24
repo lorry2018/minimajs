@@ -1,0 +1,13 @@
+{
+    "id": "demoPlugin",
+    "name": "DemoPlugin",
+    "version": "1.0.0",
+    "extensions": [{
+        "id": "minima.webapis",
+        "data": {
+            "path": "demo/info",
+            "method": "get",
+            "handler": "handlers/DemoRestHandler.js"
+        }
+    }]
+}
