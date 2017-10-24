@@ -444,7 +444,7 @@ When the minimajs framework uninstall a plugin, it will follow below activities 
 + Stop it and then change the state to 'uninstalled'.
 + You can not do any lifecycle action on a uninstalled plugin.
 
-7 Class Loading or Module loading
+#### 7 Class Loading or Module loading
 
 The minimajs framework allows one plugin load a JS Class(Or Module) from another. This means there is dependency on these two plugins.
 
