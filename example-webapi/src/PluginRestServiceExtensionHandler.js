@@ -18,9 +18,9 @@ export default class PluginRestServiceExtensionHandler {
         this.app = app;
 
         /**
-         * @type {Map.<Plugin, Set.<PluginRequestHandler>>}
+         * @type {Map.<Plugin, Set.<PluginRestServiceHandlerRegistry>>}
          */
-        this.pluginsWebApiHandlers = new Map();
+        this.pluginRestServiceHandlers = new Map();
 
         this.findHandler = this.findHandler.bind(this);
         this.handleWebApisExtensions = this.handleWebApisExtensions.bind(this);
@@ -63,28 +63,52 @@ export default class PluginRestServiceExtensionHandler {
     addWebApiExtension(extension) {
         let plugin = extension.owner;
         let servicePath = extension.data.path;
+        if (!servicePath) {
+            throw new Error(`The path of minima.webapis extension of ${plugin.id} can not be empty.`);
+        }
+
+        let handlerClass = extension.data.handler;
+        if (!handlerClass) {
+            throw new Error(`The handler of minima.webapis extension of ${plugin.id} can not be empty.`);
+        }
+
         let method = extension.data.method;
         if (!method) {
-            method = PluginRequestHandler.DEFAULT;
+            method = PluginRestServiceHandlerRegistry.DEFAULT;
+        }
+
+        if (method !== PluginRestServiceHandlerRegistry.GET &&
+            method !== PluginRestServiceHandlerRegistry.POST &&
+            method !== PluginRestServiceHandlerRegistry.PUT &&
+            method !== PluginRestServiceHandlerRegistry.DELETE) {
+            throw new Error(`The method of minima.webapis extension of ${plugin.id} must be get, post, put or delete.`);
         }
 
         if (this.findHandler(plugin, servicePath, method)) {
-            throw new Error(`Handle webapis extension error since duplicated service path ${servicePath}, ${method} in plugin ${plugin.id}.`);
+            throw new Error(`The minima.webapis extension of ${plugin.id} can not be handled since duplicated path ${servicePath}, ${method} in plugin ${plugin.id}.`);
         }
 
-        let Handler = extension.owner.loadClass(extension.data.handler).default;
-        let handlerInstance = new Handler(plugin);
-
-        let pluginRequestHandler = new PluginRequestHandler(this.app, plugin, servicePath, method, handlerInstance);
-        if (!this.pluginsWebApiHandlers.has(plugin)) {
-            this.pluginsWebApiHandlers.set(plugin, new Set());
+        let Handler = extension.owner.loadClass(handlerClass);
+        if (!Handler) {
+            throw new Error(`Can not load the class ${handlerClass} from the minima.webapis extension of ${plugin.id}.`);
         }
-        this.pluginsWebApiHandlers.get(plugin).add(pluginRequestHandler);
+
+        if (!Handler.default) {
+            throw new Error(`The class ${extension.data.handler} from the minima.webapis extension of ${plugin.id} does not declare with 'default'.`);
+        }
+
+        let handlerInstance = new Handler.default(plugin);
+
+        let pluginRequestHandler = new PluginRestServiceHandlerRegistry(this.app, plugin, servicePath, method, handlerInstance);
+        if (!this.pluginRestServiceHandlers.has(plugin)) {
+            this.pluginRestServiceHandlers.set(plugin, new Set());
+        }
+        this.pluginRestServiceHandlers.get(plugin).add(pluginRequestHandler);
         pluginRequestHandler.register();
     }
 
     findHandler(plugin, servicePath, method) {
-        let handlers = this.pluginsWebApiHandlers.get(plugin);
+        let handlers = this.pluginRestServiceHandlers.get(plugin);
         if (!handlers) {
             return null;
         }
@@ -108,29 +132,29 @@ export default class PluginRestServiceExtensionHandler {
         let method = extension.data.method;
 
         if (!method) {
-            method = PluginRequestHandler.DEFAULT;
+            method = PluginRestServiceHandlerRegistry.DEFAULT;
         }
 
-        if (!this.pluginsWebApiHandlers.has(plugin)) {
+        if (!this.pluginRestServiceHandlers.has(plugin)) {
             return;
         }
 
         let toBeRemovedHandler = this.findHandler(plugin, servicePath, method);
         if (!toBeRemovedHandler) {
-            return null;
+            return;
         }
 
         toBeRemovedHandler.unregister();
-        handlers.delete(toBeRemovedHandler);
+        this.pluginRestServiceHandlers.get(plugin).delete(toBeRemovedHandler);
     }
 }
 
 /**
  * Plugin + Path + Method is a REST service handler.
  * 
- * @class PluginRequestHandler
+ * @class PluginRestServiceHandlerRegistry
  */
-class PluginRequestHandler {
+class PluginRestServiceHandlerRegistry {
     static DEFAULT = "get";
 
     static GET = "get";
@@ -138,14 +162,14 @@ class PluginRequestHandler {
     static PUT = "put";
     static DELETE = "delete";
     /**
-     * Creates an instance of PluginRequestHandler.
+     * Creates an instance of PluginRestServiceHandlerRegistry.
      * 
      * @param {Express} app
      * @param {Plugin} plugin 
      * @param {string} servicePath 
      * @param {string} method 
      * @param {PluginRestServiceHandler} handler 
-     * @memberof PluginRequestHandler
+     * @memberof PluginRestServiceHandlerRegistry
      */
     constructor(app, plugin, servicePath, method, handler) {
         Assert.notNull("app", app);
@@ -154,7 +178,7 @@ class PluginRequestHandler {
         Assert.notNull("handler", handler);
 
         if (!method) {
-            method = PluginRequestHandler.DEFAULT;
+            method = PluginRestServiceHandlerRegistry.DEFAULT;
         }
 
         this.app = app;
@@ -163,10 +187,10 @@ class PluginRequestHandler {
         this.handler = handler;
         this.method = method.toLowerCase();
 
-        if (this.method !== PluginRequestHandler.GET &&
-            this.method !== PluginRequestHandler.POST &&
-            this.method !== PluginRequestHandler.PUT &&
-            this.method !== PluginRequestHandler.DELETE) {
+        if (this.method !== PluginRestServiceHandlerRegistry.GET &&
+            this.method !== PluginRestServiceHandlerRegistry.POST &&
+            this.method !== PluginRestServiceHandlerRegistry.PUT &&
+            this.method !== PluginRestServiceHandlerRegistry.DELETE) {
             throw new Error("The method must be get, post, put or delete.");
         }
 
@@ -176,13 +200,13 @@ class PluginRequestHandler {
     }
 
     register() {
-        if (this.method === PluginRequestHandler.GET) {
+        if (this.method === PluginRestServiceHandlerRegistry.GET) {
             this.app.get(`/${this.plugin.id}/${this.servicePath}`, this.handleRequest);
-        } else if (this.method === PluginRequestHandler.POST) {
+        } else if (this.method === PluginRestServiceHandlerRegistry.POST) {
             this.app.post(`/${this.plugin.id}/${this.servicePath}`, this.handleRequest);
-        } else if (this.method === PluginRequestHandler.PUT) {
+        } else if (this.method === PluginRestServiceHandlerRegistry.PUT) {
             this.app.put(`/${this.plugin.id}/${this.servicePath}`, this.handleRequest);
-        } else if (this.method === PluginRequestHandler.DELETE) {
+        } else if (this.method === PluginRestServiceHandlerRegistry.DELETE) {
             this.app.delete(`/${this.plugin.id}/${this.servicePath}`, this.handleRequest);
         }
     }
