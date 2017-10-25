@@ -184,6 +184,11 @@ After starting the framework, we can see the logs as below.
 [2017-7-30 12:03:51.034] [INFO] log - The plugins with active initializedState are started.
 ```
 
+## Demo
+
+There is a fully WebAPI plugin framework in the source code. You can use this demo to lean how to develop a web and REST application.
+![image](https://github.com/lorry2018/minimajs/blob/master/docs/imgs/webapidemo.png)
+
 ## Guidelines
 
 ### How to create and start a Minima instance
