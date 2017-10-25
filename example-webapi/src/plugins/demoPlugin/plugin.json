@@ -1,6 +1,6 @@
 {
     "id": "demoPlugin",
-    "name": "DemoPlugin",
+    "name": "Demo Plugin",
     "version": "1.0.0",
     "extensions": [{
         "id": "minima.webapis",
