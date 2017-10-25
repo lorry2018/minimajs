@@ -15,17 +15,16 @@ export default class StaticRoute {
         this.minima = minima;
         this.app = app;
         this.createRoute = this.createRoute.bind(this);
-
-        app.use('/static', express.static(path.resolve('./static')));
-
-        this.createRoute();
         this.addStatic = this.addStatic.bind(this);
         this.removeStatic = this.removeStatic.bind(this);
         this.pluginStateChangedListener = this.pluginStateChangedListener.bind(this);
+
+        this.createRoute();
         this.minima.addPluginStateChangedListener(this.pluginStateChangedListener);
     }
 
     createRoute() {
+        this.app.use('/static', express.static(path.resolve('./static')));
         for (let pair of this.minima.getPlugins()) {
             let plugin = pair[1];
             this.addStatic(plugin);
@@ -39,9 +38,7 @@ export default class StaticRoute {
     }
 
     removeStatic(plugin) {
-        this.app.delete(`/plugins/${plugin.id}/controllers`);
-        this.app.delete(`/plugins/${plugin.id}/utilities`);
-        this.app.delete(`/plugins/${plugin.id}/views`);
+        // TODO: remove the static
     }
 
     pluginStateChangedListener(id, previous, current) {

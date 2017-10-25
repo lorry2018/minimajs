@@ -4,12 +4,10 @@ import { Minima, Extension, Plugin, log } from 'minimajs';
 import template from 'art-template';
 import path from 'path';
 
-const MinimaMenusExtensionId = 'minima.menus';
+const minimaMenusExtensionPoint = 'minima.menus';
 
 export default class IndexRoute {
     /**
-     * 创建一个IndexRoute
-     * 
      * @param {Minima} minima 
      * @param {Express} app
      * @memberof IndexRoute
@@ -18,7 +16,7 @@ export default class IndexRoute {
         this.minima = minima;
         this.app = app;
 
-        this.handleExtensions = this.handleExtensions.bind(this);
+        this.handleExtensions = this.handleMenusExtensions.bind(this);
         this.extensionChangedListener = this.extensionChangedListener.bind(this);
         this.parseChildLevel = this.parseChildLevel.bind(this);
         this.createRoute = this.createRoute.bind(this);
@@ -27,7 +25,7 @@ export default class IndexRoute {
         this.showResponse = this.showResponse.bind(this);
         this.showError = this.showError.bind(this);
 
-        this.handleExtensions();
+        this.handleMenusExtensions();
         this.minima.addExtensionChangedListener(this.extensionChangedListener);
 
         this.createRoute();
@@ -46,12 +44,12 @@ export default class IndexRoute {
      * @memberof IndexRoute
      */
     extensionChangedListener(extension, action) {
-        if (extension.id === MinimaMenusExtensionId) {
-            this.handleExtensions();
+        if (extension.id === minimaMenusExtensionPoint) {
+            this.handleMenusExtensions();
         }
     }
 
-    handleExtensions() {
+    handleMenusExtensions() {
         MenuData.menuId = 0;
         /**
          * @type {MenuData[]}
@@ -62,7 +60,7 @@ export default class IndexRoute {
          */
         this.menuMap = new Map();
 
-        let extensions = this.minima.getExtensions(MinimaMenusExtensionId);
+        let extensions = this.minima.getExtensions(minimaMenusExtensionPoint);
         for (let extension of extensions) {
             for (let menu of extension.data) {
                 let menuData = new MenuData(extension.owner, menu);
