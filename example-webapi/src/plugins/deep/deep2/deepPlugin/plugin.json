@@ -1,0 +1,13 @@
+{
+    "id": "deepDemoPlugin",
+    "name": "Deep Plugin",
+    "version": "1.0.0",
+    "extensions": [{
+        "id": "minima.webapis",
+        "data": {
+            "path": "deep/info",
+            "method": "get",
+            "handler": "handlers/DeepRestHandler.js"
+        }
+    }]
+}

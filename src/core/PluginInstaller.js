@@ -79,21 +79,26 @@ export default class PluginInstaller {
     }
 
     /**
-     * 从插件集合目录中查找插件，规则为：插件根目录——插件目录（一级子目录）——plugin.json（插件目录的文件），
+     * 从插件集合目录中查找插件，规则为：插件根目录——插件目录(多级）——plugin.json（插件目录的文件），
      * 如果找到plugin.json，则尝试加载解析插件
      * 
      * @memberof PluginInstaller
      */
-    installPlugins() {
-        for (let pluginsDirectory of this.pluginsDirectories) {
+    installPlugins(pluginsDirectories) {
+        if (!pluginsDirectories) pluginsDirectories = this.pluginsDirectories //默认从插件根目录加载
+        for (let pluginsDirectory of pluginsDirectories) {
             log.logger.info(`Loading plugins from ${pluginsDirectory}.`);
+            let subPluginsDirectories = fs.readdirSync(pluginsDirectory);
+            for (let subPluginDirectory of subPluginsDirectories) {
+                subPluginDirectory = path.join(pluginsDirectory, subPluginDirectory);
+                let pluginConfigFile = path.join(subPluginDirectory, Constants.pluginConfigFileName);
 
-            let pluginDirectories = fs.readdirSync(pluginsDirectory);
-            for (let pluginDirectory of pluginDirectories) {
-                pluginDirectory = path.join(pluginsDirectory, pluginDirectory);
-                this.installPluginInternal(pluginDirectory);
+                if (!fs.existsSync(pluginConfigFile)) { //找到config文件，表明是plugin
+                    this.installPlugins([subPluginDirectory])
+                } else { //查找二级目录下的plugin
+                    this.installPluginInternal(subPluginDirectory);
+                }
             }
-
             log.logger.info(`Plugins are loaded from ${pluginsDirectory} completed.`);
         }
 
@@ -113,8 +118,8 @@ export default class PluginInstaller {
             return null;
         }
 
-        let pluginConfiguration = null;
-
+        let pluginConfiguration = null;       
+        
         try {
             pluginConfiguration = new PluginConfiguration(pluginConfigFile);
         } catch (error) {

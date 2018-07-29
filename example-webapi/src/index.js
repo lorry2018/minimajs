@@ -1,4 +1,4 @@
-import Minima from 'minimajs';
+import Minima from '../../index';
 import path from 'path';
 import express from 'express';
 import cookieParser from 'cookie-parser';
